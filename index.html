@@ -47,6 +47,24 @@
   .ferry-box { background: #f0e6ff; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #6b21a8; margin-top: 7px; line-height: 1.4; }
 
 
+
+  .bookings-tab { padding: 4px 0; }
+  .booking-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; border-bottom: 0.5px solid #f0f0f0; }
+  .booking-row:last-child { border-bottom: none; }
+  .booking-check { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; accent-color: #166534; cursor: pointer; }
+  .booking-body { flex: 1; }
+  .booking-name { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .booking-day { font-size: 11px; color: #999; margin-bottom: 3px; }
+  .booking-detail { font-size: 12px; color: #666; line-height: 1.5; }
+  .booking-url { font-size: 11px; color: #2563eb; margin-top: 3px; font-weight: 600; }
+  .booking-price { font-size: 12px; font-weight: 700; color: #166534; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .booking-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .badge-booked { background: #dcfce7; color: #166534; }
+  .badge-urgent { background: #fef9c3; color: #854d0e; }
+  .badge-free { background: #f1f5f9; color: #475569; }
+  .booking-section { margin-bottom: 20px; border: 0.5px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
+  .booking-section-header { background: #f8f8f8; padding: 10px 14px; border-bottom: 0.5px solid #e5e5e5; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; }
+  .booking-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
   .rest-day { margin-bottom: 18px; border: 0.5px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
   .rest-day-header { background: #f8f8f8; padding: 10px 14px; border-bottom: 0.5px solid #e5e5e5; display: flex; align-items: center; gap: 10px; }
   .rest-day-badge { font-size: 11px; font-weight: 700; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -139,12 +157,222 @@
     <button class="tab-btn" onclick="switchTab('driving')">Driving distances</button>
     <button class="tab-btn" onclick="switchTab('hotels')">Hotels</button>
     <button class="tab-btn" onclick="switchTab('restaurants')">Restaurants</button>
+    <button class="tab-btn" onclick="switchTab('bookings')">Bookings</button>
   </div>
 
   <div id="tab-itinerary" class="tab-panel active">
     <div id="days"></div>
   </div>
 
+  <div id="tab-bookings" class="tab-panel">
+    <div class="bookings-tab">
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#E24B4A"></div> Already Booked</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Baldur Ferry — Brjánslækur → Stykkishólmur <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 9 · Mon Jun 15 · 2:00pm departure</div>
+            <div class="booking-detail">Ticket FER-T130447715. Departs 2pm sharp. 2.5hr crossing via Flatey island. Arrive Stykkishólmur ~4:30pm.</div>
+          </div>
+          <div class="booking-price">Already paid</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#E8A000"></div> Book Immediately — Sells Out Weeks Ahead</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Sky Lagoon — Sér Ritual <span class="booking-badge badge-urgent">Book now</span></div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · 11:00am slot</div>
+            <div class="booking-detail">Private changing rooms + 7-step ritual. Sells out weeks ahead in June.</div>
+            <div class="booking-url">skylagoon.com</div>
+          </div>
+          <div class="booking-price">~$180 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Silfra Snorkel — Þingvellir <span class="booking-badge badge-urgent">Book now</span></div>
+            <div class="booking-day">Day 2 · Mon Jun 8 · 1:00pm slot</div>
+            <div class="booking-detail">Drysuit provided. 120m visibility between tectonic plates. Thermal underlayers essential — wear wool, not cotton. Book DIVE.IS or Arctic Adventures.</div>
+            <div class="booking-url">dive.is</div>
+          </div>
+          <div class="booking-price">~$320 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Jökulsárlón Zodiac Boat Tour <span class="booking-badge badge-urgent">Book now</span></div>
+            <div class="booking-day">Day 4 · Wed Jun 10 · 2:00pm slot</div>
+            <div class="booking-detail">Book the zodiac — NOT the amphibian bus. 45 min up close with icebergs. Sells out weeks ahead in June.</div>
+            <div class="booking-url">glacierlagoon.is</div>
+          </div>
+          <div class="booking-price">~$220 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Sólheimajökull Glacier Hike <span class="booking-badge badge-urgent">Book now</span></div>
+            <div class="booking-day">Day 3 · Tue Jun 9 · 1:30pm slot</div>
+            <div class="booking-detail">Guided crampons tour. Blue crevasses, active glacier surface. 2.5 hrs. Sell out in June.</div>
+            <div class="booking-url">glacierguides.is</div>
+          </div>
+          <div class="booking-price">~$270 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Friðheimar Farm — Lunch <span class="booking-badge badge-urgent">Book now</span></div>
+            <div class="booking-day">Day 2 · Mon Jun 8 · 2:00pm slot</div>
+            <div class="booking-detail">Geothermal greenhouse restaurant. Fills up fast in summer.</div>
+            <div class="booking-url">fridheimar.is</div>
+          </div>
+          <div class="booking-price">~$120 CAD x2</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#378ADD"></div> Restaurants — Book 2–4 Weeks Ahead</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Matur og Drykkur — Dinner</div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · 7:00pm</div>
+            <div class="booking-detail">À la carte. Old harbour. Modern Icelandic.</div>
+            <div class="booking-url">maturogdrykkur.is</div>
+          </div>
+          <div class="booking-price">~$220 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Pakkhús — Dinner</div>
+            <div class="booking-day">Day 4 · Wed Jun 10 · 6:30pm</div>
+            <div class="booking-detail">Iceland's best langoustine. Book the tasting menu. Glacier views.</div>
+            <div class="booking-url">pakkhus.is</div>
+          </div>
+          <div class="booking-price">~$260 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Vogafjós Farm Restaurant — Dinner</div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 8:00pm</div>
+            <div class="booking-detail">Farm-to-table on the Mývatn lake shore. Watch the cows being milked through the glass.</div>
+            <div class="booking-url">vogafjos.net</div>
+          </div>
+          <div class="booking-price">~$200 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Café Riis — Dinner (if doing Hólmavík split)</div>
+            <div class="booking-day">Day 7 · Sat Jun 13 · 7:30pm</div>
+            <div class="booking-detail">Best restaurant in Hólmavík. Local fish and lamb.</div>
+            <div class="booking-url">Search: Café Riis Hólmavík</div>
+          </div>
+          <div class="booking-price">~$100 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Grillmarkaðurinn — Final Dinner</div>
+            <div class="booking-day">Day 9 · Mon Jun 15 · 8:00pm</div>
+            <div class="booking-detail">Wood-fired Icelandic lamb and langoustine. Tasting menu or à la carte.</div>
+            <div class="booking-url">grillmarkadurinn.is</div>
+          </div>
+          <div class="booking-price">~$300 CAD x2</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#1D9E75"></div> Book 1–2 Weeks Ahead</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Mývatn Nature Baths</div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 5:30pm</div>
+            <div class="booking-detail">Best geothermal bathing in Iceland. ~$75 CAD/person. Book a time slot ahead.</div>
+            <div class="booking-url">myvatnnaturebaths.is</div>
+          </div>
+          <div class="booking-price">~$150 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Flybus Plus — Keflavík to Reykjavík</div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · ~7:00am arrival</div>
+            <div class="booking-detail">45 min. Drop-off near Hotel Borg.</div>
+            <div class="booking-url">flybus.is</div>
+          </div>
+          <div class="booking-price">~$60 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Flybus — Reykjavík to Keflavík (departure)</div>
+            <div class="booking-day">Day 10 · Tue Jun 16 · depart by 8:00am</div>
+            <div class="booking-detail">Book return journey at same time. Picks up from BSÍ bus terminal.</div>
+            <div class="booking-url">re.is</div>
+          </div>
+          <div class="booking-price">~$60 CAD x2</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#aaa"></div> Free — No Booking Required</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Kolaportið Flea Market <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · 9:00am</div>
+            <div class="booking-detail">Sunday only. Just show up. Runs 11am–5pm.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Kerið Volcanic Crater <span class="booking-badge badge-free">Walk-up</span></div>
+            <div class="booking-day">Day 2 · Mon Jun 8 · ~5:15pm</div>
+            <div class="booking-detail">~1,000 ISK entry (~$10 CAD). Pay at the gate.</div>
+          </div>
+          <div class="booking-price">~$20 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Hellislaug Hot Spring <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 7 · Sat Jun 13 · en route</div>
+            <div class="booking-detail">Natural pool on the beach off Route 61. Free, no booking.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Garðar BA 64 Shipwreck <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 8 · Sun Jun 14 · en route</div>
+            <div class="booking-detail">On Route 612. Free photo stop, no booking needed.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Patreksfjörður Town Pool <span class="booking-badge badge-free">Walk-up</span></div>
+            <div class="booking-day">Day 8 · Sun Jun 14 · afternoon</div>
+            <div class="booking-detail">Outdoor pool + hot tubs with fjord views. Pay at the door.</div>
+          </div>
+          <div class="booking-price">~$20 CAD x2</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
   <div id="tab-restaurants" class="tab-panel">
     <div class="hotels-tab">
 
@@ -159,10 +387,10 @@
           <input type="radio" name="rest-d1" class="rest-option-radio" checked>
           <div class="rest-option-body">
             <div class="rest-option-name">Matur og Drykkur ⭐ — SELECTED</div>
-            <div class="rest-option-why">Old harbour. 6-course tasting menu of modern Icelandic cuisine. One of Reykjavík's most celebrated restaurants. Book weeks ahead at maturogdrykkur.is.</div>
+            <div class="rest-option-why">Old harbour. À la carte — skip the full tasting menu on an arrival day. Salt cod, lamb, skyr dessert are the standouts. Book ahead at maturogdrykkur.is.</div>
             <div class="rest-option-known">Known for: Salt cod head, whole roasted lamb, historic Icelandic recipes reinterpreted</div>
           </div>
-          <div class="rest-option-price">~$200 CAD pp</div>
+          <div class="rest-option-price">~$110 CAD pp</div>
         </div>
         <div class="rest-option">
           <input type="radio" name="rest-d1" class="rest-option-radio">
@@ -746,16 +974,18 @@ const days = [
   {
     num:1, date:"Sun Jun 7", color:"#3B8BD4",
     name:"Arrive Reykjavík — no car",
-    sub:"Land 6am · Sky Lagoon · city on foot · cabs",
+    sub:"Land 6am · Roasters · Kolaportið market · Sky Lagoon · city walk · Matur og Drykkur",
     birthday:false, westfjords:false,
     tags:["Hot springs","City"],
     activities:[
       {text:"Flybus Plus from Keflavík", note:"Book at flybus.is. 45 min. Drop-off near hotel."},
-      {text:"Sky Lagoon — Sér Ritual package (9am slot)", note:"Private changing rooms + 7-step ritual. Book ahead at skylagoon.com — sells out."},
-      {text:"Walk: Hallgrímskirkja tower → Rainbow Street → Laugavegur", note:"Tower elevator ~$10 CAD. Panoramic views over city and mountains."},
-      {text:"Sun Voyager + Harpa Concert Hall seafront walk", note:"Free. Step inside Harpa — the glass architecture alone is worth it."},
-      {text:"Dinner at Matur og Drykkur", note:"6-course tasting menu. Old harbour. Book weeks ahead. Modern Icelandic — the right first night meal."},
-      {text:"Midnight sun walk around Tjörnin lake", note:"11pm golden light. It never gets dark in June. Utterly surreal."},
+      {text:"Reykjavík Roasters — coffee (8:00am)", note:"Best coffee in Iceland. Tiny specialty roastery on Brautarholt, 10 min walk from Hotel Borg. Get a flat white and a pastry before anything else. You've just landed — you need this."},
+      {text:"Kolaportið Flea Market (9:00am)", note:"Sunday only — and June 7 is a Sunday, so don't miss it. Local food stalls (try hákarl if you're brave), vintage Icelandic wool, secondhand books. One of the most authentically local things you can do in Reykjavík. Runs 11am–5pm but get there early. Free entry."},
+      {text:"Sky Lagoon — Sér Ritual package (11:00am slot)", note:"Private changing rooms + 7-step ritual. Book ahead at skylagoon.com — sells out. This is the right call after a red-eye flight."},
+      {text:"Walk: Hallgrímskirkja tower + interior → Rainbow Street → Laugavegur", note:"Tower elevator ~$10 CAD. Go inside the church too — if there's an organ rehearsal happening it's extraordinary. Then walk down Rainbow Street to Laugavegur for browsing and coffee."},
+      {text:"Sun Voyager seafront walk (4:00pm)", note:"Free 20 min walk along the harbour. Skip going inside Harpa unless there's a concert — the outside is the point."},
+      {text:"Dinner at Matur og Drykkur (7:00pm)", note:"Modern Icelandic cuisine in the old harbour. Skip the full tasting menu — order à la carte instead. The salt cod, lamb, and skyr dessert are the standouts. Book ahead at maturogdrykkur.is."},
+      {text:"Midnight sun walk around Tjörnin lake", note:"11pm golden light. It never gets dark in June. Utterly surreal — worth staying up for even on no sleep."},
     ],
     hotel:"Hotel Borg by Keahotels — central Reykjavík",
     hotelWhy:"Art Deco landmark on Austurvöllur Square. Walking distance to everything. Book direct at keahotels.is.",
@@ -764,7 +994,8 @@ const days = [
       {item:"Flybus Plus x2", usd:44},
       {item:"Sky Lagoon Sér Ritual x2", usd:130},
       {item:"Hallgrímskirkja tower x2", usd:11},
-      {item:"Dinner — Matur og Drykkur x2 + drinks", usd:320},
+      {item:"Reykjavík Roasters coffee x2", usd:15},
+      {item:"Dinner — Matur og Drykkur à la carte x2 + drinks", usd:180},
       {item:"Incidentals", usd:40},
     ],
     drive:"No car today — cab, bus, or walk",
