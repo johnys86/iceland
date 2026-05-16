@@ -6,149 +6,150 @@
 <title>Iceland Ring Road — June 7–16, 2026</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0ebe3; color: #2c1f0e; padding: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #0d2d35; padding: 16px; }
   .wrap { max-width: 700px; margin: 0 auto; }
-  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; color: #2c1f0e; letter-spacing: -0.3px; }
-  .trip-sub { font-size: 12px; color: #9c7c5a; margin-bottom: 16px; letter-spacing: 0.02em; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; color: #0d2d35; letter-spacing: -0.3px; }
+  .trip-sub { font-size: 12px; color: #2a6070; margin-bottom: 16px; letter-spacing: 0.02em; }
   .legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #9c7c5a; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #2a6070; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .day-card { background: #fff; border: 0.5px solid #ddd3c6; border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(44,31,14,0.06); }
-  .day-card.birthday { border: 2px solid #c9863a; }
+  .day-card { background: #fff; border: 0.5px solid #b8d8e0; border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(44,31,14,0.06); }
+  .day-card.birthday { border: 2px solid #0e7490; }
   .day-header { display: flex; align-items: center; gap: 10px; padding: 13px 15px; cursor: pointer; background: #fff; }
-  .day-header:hover { background: #fdf8f3; }
+  .day-header:hover { background: #f0f8fa; }
   .day-badge { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; color: #fff; }
   .day-title { flex: 1; min-width: 0; }
-  .day-date { font-size: 10px; color: #b8956e; letter-spacing: 0.04em; }
-  .day-name { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; color: #2c1f0e; }
-  .day-sub { font-size: 11px; color: #9c7c5a; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .bday-pill { font-size: 9px; padding: 2px 7px; border-radius: 7px; background: #fdf0dc; color: #8a5c1a; font-weight: 600; white-space: nowrap; border: 0.5px solid #e8c98a; }
+  .day-date { font-size: 10px; color: #4a8a9a; letter-spacing: 0.04em; }
+  .day-name { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; color: #0d2d35; }
+  .day-sub { font-size: 11px; color: #2a6070; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bday-pill { font-size: 9px; padding: 2px 7px; border-radius: 7px; background: #e0f2f7; color: #0a4a5a; font-weight: 600; white-space: nowrap; border: 0.5px solid #7ab8c8; }
   .west-pill { font-size: 9px; padding: 2px 7px; border-radius: 7px; background: #f0e8f8; color: #6b21a8; font-weight: 600; white-space: nowrap; }
-  .cost-badge { font-size: 11px; font-weight: 700; color: #7a5c38; background: #fdf0dc; padding: 3px 9px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; border: 0.5px solid #e8c98a; }
-  .chevron { font-size: 10px; color: #c9a882; transition: transform 0.2s; flex-shrink: 0; }
+  .cost-badge { font-size: 11px; font-weight: 700; color: #0e7490; background: #e0f2f7; padding: 3px 9px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; border: 0.5px solid #7ab8c8; }
+  .chevron { font-size: 10px; color: #6aaaba; transition: transform 0.2s; flex-shrink: 0; }
   .chevron.open { transform: rotate(90deg); }
-  .day-body { display: none; padding: 0 15px 14px; border-top: 1px solid #f0e8de; }
+  .day-body { display: none; padding: 0 15px 14px; border-top: 1px solid #daeef3; }
   .day-body.open { display: block; }
-  .section-label { font-size: 10px; font-weight: 700; color: #c9a882; text-transform: uppercase; letter-spacing: 0.08em; margin: 11px 0 5px; }
+  .section-label { font-size: 10px; font-weight: 700; color: #6aaaba; text-transform: uppercase; letter-spacing: 0.08em; margin: 11px 0 5px; }
   .activity { display: flex; gap: 8px; margin-bottom: 7px; }
-  .act-dot { width: 5px; height: 5px; border-radius: 50%; background: #c9a882; margin-top: 5px; flex-shrink: 0; }
-  .act-text { font-size: 12px; font-weight: 600; color: #2c1f0e; }
-  .act-note { font-size: 11px; color: #9c7c5a; margin-top: 1px; line-height: 1.45; }
-  .hotel-box { background: #fdf8f3; border: 0.5px solid #e8ddd0; border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
-  .hotel-name { font-size: 12px; font-weight: 700; color: #2c1f0e; }
-  .hotel-why { font-size: 11px; color: #9c7c5a; margin-top: 2px; line-height: 1.4; }
+  .act-dot { width: 5px; height: 5px; border-radius: 50%; background: #6aaaba; margin-top: 5px; flex-shrink: 0; }
+  .act-text { font-size: 12px; font-weight: 600; color: #0d2d35; }
+  .act-note { font-size: 11px; color: #2a6070; margin-top: 1px; line-height: 1.45; }
+  .hotel-box { background: #f0f8fa; border: 0.5px solid #c4e0e8; border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
+  .hotel-name { font-size: 12px; font-weight: 700; color: #0d2d35; }
+  .hotel-why { font-size: 11px; color: #2a6070; margin-top: 2px; line-height: 1.4; }
   .cost-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11px; }
-  .cost-table th { text-align: left; color: #c9a882; font-weight: 700; font-size: 10px; text-transform: uppercase; padding: 3px 5px; border-bottom: 1px solid #ede5da; letter-spacing: 0.05em; }
-  .cost-table td { padding: 4px 5px; border-bottom: 1px solid #f5efe8; color: #5a3e28; }
+  .cost-table th { text-align: left; color: #6aaaba; font-weight: 700; font-size: 10px; text-transform: uppercase; padding: 3px 5px; border-bottom: 1px solid #d0e8ef; letter-spacing: 0.05em; }
+  .cost-table td { padding: 4px 5px; border-bottom: 1px solid #e8f5f8; color: #5a3e28; }
   .cost-table tr:last-child td { border-bottom: none; }
-  .cost-table .total-row td { font-weight: 700; color: #7a5c38; border-top: 1px solid #e0d0be; padding-top: 6px; }
-  .warn-box { background: #fdf8ec; border: 0.5px solid #e8d08a; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #7d5a00; margin-top: 8px; line-height: 1.4; }
+  .cost-table .total-row td { font-weight: 700; color: #0e7490; border-top: 1px solid #e0d0be; padding-top: 6px; }
+  .warn-box { background: #e8f5f8; border: 0.5px solid #7ab8c8; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #0a4a5a; margin-top: 8px; line-height: 1.4; }
   .info-box { background: #edf5f0; border: 0.5px solid #a8d4bc; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #1a5a3a; margin-top: 7px; line-height: 1.4; }
   .ferry-box { background: #f3edf8; border: 0.5px solid #c9a8e0; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #5b2d82; margin-top: 7px; line-height: 1.4; }
 
 
 
   .bookings-tab { padding: 4px 0; }
-  .booking-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; border-bottom: 0.5px solid #f0e8de; }
+  .booking-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; border-bottom: 0.5px solid #daeef3; }
   .booking-row:last-child { border-bottom: none; }
-  .booking-check { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; accent-color: #7a5c38; cursor: pointer; }
+  .booking-check { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; accent-color: #0e7490; cursor: pointer; }
   .booking-body { flex: 1; }
-  .booking-name { font-size: 13px; font-weight: 700; color: #2c1f0e; margin-bottom: 2px; }
-  .booking-day { font-size: 11px; color: #b8956e; margin-bottom: 3px; }
-  .booking-detail { font-size: 12px; color: #9c7c5a; line-height: 1.5; }
-  .booking-url { font-size: 11px; color: #7a5c38; margin-top: 3px; font-weight: 600; text-decoration: underline; }
-  .booking-price { font-size: 12px; font-weight: 700; color: #7a5c38; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .booking-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .booking-day { font-size: 11px; color: #4a8a9a; margin-bottom: 3px; }
+  .booking-detail { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .booking-url { font-size: 11px; color: #0e7490; margin-top: 3px; font-weight: 600; text-decoration: underline; }
+  .booking-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
   .booking-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
   .badge-booked { background: #e8f3ec; color: #1a5a38; border: 0.5px solid #a8d4bc; }
-  .badge-urgent { background: #fdf0dc; color: #7a4a12; border: 0.5px solid #e8c98a; }
-  .badge-free { background: #f5efe8; color: #7a5c38; border: 0.5px solid #ddd3c6; }
-  .booking-section { margin-bottom: 20px; border: 0.5px solid #ddd3c6; border-radius: 10px; overflow: hidden; }
-  .booking-section-header { background: #fdf8f3; padding: 10px 14px; border-bottom: 0.5px solid #ddd3c6; font-size: 11px; font-weight: 700; color: #9c7c5a; text-transform: uppercase; letter-spacing: 0.07em; display: flex; align-items: center; gap: 8px; }
+  .badge-urgent { background: #e0f2f7; color: #0a4a5a; border: 0.5px solid #7ab8c8; }
+  .badge-free { background: #e8f5f8; color: #0e7490; border: 0.5px solid #b8d8e0; }
+  .booking-section { margin-bottom: 20px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .booking-section-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; font-size: 11px; font-weight: 700; color: #2a6070; text-transform: uppercase; letter-spacing: 0.07em; display: flex; align-items: center; gap: 8px; }
   .booking-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .rest-day { margin-bottom: 18px; border: 0.5px solid #ddd3c6; border-radius: 10px; overflow: hidden; }
-  .rest-day-header { background: #fdf8f3; padding: 10px 14px; border-bottom: 0.5px solid #ddd3c6; display: flex; align-items: center; gap: 10px; }
+  .rest-day { margin-bottom: 18px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .rest-day-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; display: flex; align-items: center; gap: 10px; }
   .rest-day-badge { font-size: 11px; font-weight: 700; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .rest-day-title { font-size: 13px; font-weight: 700; color: #2c1f0e; }
-  .rest-day-date { font-size: 11px; color: #b8956e; margin-left: auto; }
-  .rest-option { padding: 12px 14px; border-bottom: 0.5px solid #f0e8de; display: flex; align-items: flex-start; gap: 12px; }
+  .rest-day-title { font-size: 13px; font-weight: 700; color: #0d2d35; }
+  .rest-day-date { font-size: 11px; color: #4a8a9a; margin-left: auto; }
+  .rest-option { padding: 12px 14px; border-bottom: 0.5px solid #daeef3; display: flex; align-items: flex-start; gap: 12px; }
   .rest-option:last-child { border-bottom: none; }
-  .rest-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #7a5c38; width: 15px; height: 15px; cursor: pointer; }
+  .rest-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #0e7490; width: 15px; height: 15px; cursor: pointer; }
   .rest-option-body { flex: 1; }
-  .rest-option-name { font-size: 13px; font-weight: 700; color: #2c1f0e; margin-bottom: 2px; }
-  .rest-option-why { font-size: 12px; color: #9c7c5a; line-height: 1.5; }
-  .rest-option-known { font-size: 11px; color: #b8956e; margin-top: 3px; font-style: italic; }
-  .rest-option-price { font-size: 12px; font-weight: 700; color: #7a5c38; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
-  .rest-chosen { background: #fdf8f3; }
-  .rest-chosen .rest-option-name { color: #7a5c38; }
-  .rest-meal-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #c9a882; margin-bottom: 8px; padding: 0 14px; padding-top: 10px; }
+  .rest-option-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .rest-option-why { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .rest-option-known { font-size: 11px; color: #4a8a9a; margin-top: 3px; font-style: italic; }
+  .rest-option-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .rest-chosen { background: #f0f8fa; }
+  .rest-chosen .rest-option-name { color: #0e7490; }
+  .rest-meal-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #6aaaba; margin-bottom: 8px; padding: 0 14px; padding-top: 10px; }
   .hotels-tab { padding: 4px 0; }
-  .hotel-night { margin-bottom: 20px; border: 0.5px solid #ddd3c6; border-radius: 10px; overflow: hidden; }
-  .hotel-night-header { background: #fdf8f3; padding: 10px 14px; border-bottom: 0.5px solid #ddd3c6; display: flex; align-items: center; gap: 10px; }
+  .hotel-night { margin-bottom: 20px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .hotel-night-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; display: flex; align-items: center; gap: 10px; }
   .hotel-night-badge { font-size: 11px; font-weight: 700; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .hotel-night-title { font-size: 13px; font-weight: 700; color: #2c1f0e; }
-  .hotel-night-date { font-size: 11px; color: #b8956e; margin-left: auto; }
-  .hotel-option { padding: 12px 14px; border-bottom: 0.5px solid #f0e8de; display: flex; align-items: flex-start; gap: 12px; }
+  .hotel-night-title { font-size: 13px; font-weight: 700; color: #0d2d35; }
+  .hotel-night-date { font-size: 11px; color: #4a8a9a; margin-left: auto; }
+  .hotel-option { padding: 12px 14px; border-bottom: 0.5px solid #daeef3; display: flex; align-items: flex-start; gap: 12px; }
   .hotel-option:last-child { border-bottom: none; }
-  .hotel-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #7a5c38; width: 15px; height: 15px; cursor: pointer; }
+  .hotel-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #0e7490; width: 15px; height: 15px; cursor: pointer; }
   .hotel-option-body { flex: 1; }
-  .hotel-option-name { font-size: 13px; font-weight: 700; color: #2c1f0e; margin-bottom: 2px; }
-  .hotel-option-why { font-size: 12px; color: #9c7c5a; line-height: 1.5; }
-  .hotel-option-price { font-size: 12px; font-weight: 700; color: #7a5c38; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
-  .hotel-chosen { background: #fdf8f3; }
-  .hotel-chosen .hotel-option-name { color: #7a5c38; }
-  .tab-nav { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1.5px solid #ddd3c6; }
-  .tab-btn { padding: 8px 14px; font-size: 12px; font-weight: 600; color: #b8956e; background: none; border: none; border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; cursor: pointer; transition: color 0.15s; letter-spacing: 0.01em; }
-  .tab-btn.active { color: #2c1f0e; border-bottom-color: #c9863a; }
-  .tab-btn:hover:not(.active) { color: #7a5c38; }
+  .hotel-option-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .hotel-option-why { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .hotel-option-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .hotel-chosen { background: #f0f8fa; }
+  .hotel-chosen .hotel-option-name { color: #0e7490; }
+  .tab-nav { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1.5px solid #b8d8e0; }
+  .tab-btn { padding: 8px 14px; font-size: 12px; font-weight: 600; color: #4a8a9a; background: none; border: none; border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; cursor: pointer; transition: color 0.15s; letter-spacing: 0.01em; }
+  .tab-btn.active { color: #0d2d35; border-bottom-color: #0e7490; }
+  .tab-btn:hover:not(.active) { color: #0e7490; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   .drive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .drive-table thead th { font-size: 11px; font-weight: 700; color: #c9a882; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 6px 10px 8px; border-bottom: 1.5px solid #ddd3c6; }
+  .drive-table thead th { font-size: 11px; font-weight: 700; color: #6aaaba; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 6px 10px 8px; border-bottom: 1.5px solid #b8d8e0; }
   .drive-table thead th:nth-child(3) { text-align: right; }
-  .drive-table tbody tr:hover { background: #fdf8f3; }
-  .drive-table td { padding: 11px 10px; border-bottom: 1px solid #f0e8de; vertical-align: middle; color: #2c1f0e; }
+  .drive-table tbody tr:hover { background: #f0f8fa; }
+  .drive-table td { padding: 11px 10px; border-bottom: 1px solid #daeef3; vertical-align: middle; color: #0d2d35; }
   .drive-table td:nth-child(3) { text-align: right; font-variant-numeric: tabular-nums; }
-  .drive-table .total-row td { font-weight: 700; border-bottom: none; border-top: 1.5px solid #ddd3c6; padding-top: 12px; color: #7a5c38; }
-  .drive-day { font-weight: 700; font-size: 13px; color: #2c1f0e; }
-  .drive-date { font-size: 11px; color: #c9a882; margin-top: 1px; }
+  .drive-table .total-row td { font-weight: 700; border-bottom: none; border-top: 1.5px solid #b8d8e0; padding-top: 12px; color: #0e7490; }
+  .drive-day { font-weight: 700; font-size: 13px; color: #0d2d35; }
+  .drive-date { font-size: 11px; color: #6aaaba; margin-top: 1px; }
   .bar-wrap { display: flex; align-items: center; gap: 8px; }
-  .bar-bg { flex: 1; background: #ede5da; border-radius: 4px; height: 7px; overflow: hidden; }
+  .bar-bg { flex: 1; background: #d0e8ef; border-radius: 4px; height: 7px; overflow: hidden; }
   .bar-fill { height: 7px; border-radius: 4px; }
-  .bar-label { font-size: 12px; color: #9c7c5a; white-space: nowrap; min-width: 90px; }
-  .big-day { font-size: 10px; font-weight: 700; background: #fdf0dc; color: #8a3a1a; border-radius: 4px; padding: 2px 5px; margin-left: 4px; }
+  .bar-label { font-size: 12px; color: #2a6070; white-space: nowrap; min-width: 90px; }
+  .big-day { font-size: 10px; font-weight: 700; background: #e0f2f7; color: #0a4a5a; border-radius: 4px; padding: 2px 5px; margin-left: 4px; }
   .drive-bar { font-size: 11px; color: #999; padding: 7px 0 0; border-top: 1px solid #f0f0f0; margin-top: 8px; }
   .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 6px; margin: 2px 2px 0 0; border: 0.5px solid rgba(44,31,14,0.12); }
   .tag-blue { background: #e8f0f8; color: #1a4a7a; }
   .tag-green { background: #e8f3ec; color: #1a5a38; }
-  .tag-amber { background: #fdf0dc; color: #7a4a12; }
+  .tag-amber { background: #e0f2f7; color: #0a4a5a; }
   .tag-purple { background: #f0e8f8; color: #5b21b6; }
-  .trip-total { background: #fdf8f3; border: 1.5px solid #c9a882; border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; }
-  .trip-total h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #7a5c38; letter-spacing: 0.01em; }
+  .trip-total { background: #fff; border: 1.5px solid #6aaaba; border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; }
+  .trip-total h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #0e7490; letter-spacing: 0.01em; }
   .total-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-  .total-item { background: #fff; border: 0.5px solid #e8ddd0; border-radius: 8px; padding: 8px 10px; }
-  .total-item .tval { font-size: 15px; font-weight: 700; color: #2c1f0e; }
-  .total-item .tlabel { font-size: 10px; color: #b8956e; margin-top: 1px; }
-  .grand { margin-top: 10px; font-size: 13px; font-weight: 700; color: #7a5c38; }
-  .grand-note { font-size: 10px; color: #b8956e; margin-top: 3px; }
-  .fx-note { font-size: 10px; color: #c9a882; margin-top: 6px; }
+  .total-item { background: #fff; border: 0.5px solid #c4e0e8; border-radius: 8px; padding: 8px 10px; }
+  .total-item .tval { font-size: 15px; font-weight: 700; color: #0d2d35; }
+  .total-item .tlabel { font-size: 10px; color: #4a8a9a; margin-top: 1px; }
+  .grand { margin-top: 10px; font-size: 13px; font-weight: 700; color: #0e7490; }
+  .grand-note { font-size: 10px; color: #4a8a9a; margin-top: 3px; }
+  .fx-note { font-size: 10px; color: #6aaaba; margin-top: 6px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <p style="font-size:10px;letter-spacing:0.12em;color:#b8956e;text-transform:uppercase;margin-bottom:6px;">Iceland &nbsp;·&nbsp; Ring Road &nbsp;·&nbsp; June 2026</p>
+  <p style="font-size:10px;letter-spacing:0.12em;color:#4a8a9a;text-transform:uppercase;margin-bottom:6px;">Iceland &nbsp;·&nbsp; Ring Road &nbsp;·&nbsp; June 2026</p>
   <h1>Anti-Clockwise + Westfjords</h1>
   <p class="trip-sub">June 7–16, 2026 &nbsp;·&nbsp; 9 nights &nbsp;·&nbsp; 2 people &nbsp;·&nbsp; Birthday June 9 (South Coast) &nbsp;·&nbsp; Car from Day 2 &nbsp;·&nbsp; All costs in CAD</p>
 
   <div class="trip-total">
-    <h3>Estimated trip total — 2 people (excl. flights)</h3>
+    <h3>Estimated trip total — 2 people (incl. flights)</h3>
     <div class="total-grid">
       <div class="total-item"><div class="tval">~$5,700</div><div class="tlabel">Hotels (9 nights)</div></div>
       <div class="total-item"><div class="tval">~$1,900</div><div class="tlabel">Dining (9 days)</div></div>
       <div class="total-item"><div class="tval">~$1,200</div><div class="tlabel">Activities &amp; tours</div></div>
       <div class="total-item"><div class="tval">~$545</div><div class="tlabel">Transport &amp; ferry</div></div>
       <div class="total-item"><div class="tval">~$3,000</div><div class="tlabel">Car rental (8 days)</div></div>
+      <div class="total-item"><div class="tval">$2,484</div><div class="tlabel">Flights — YVR return (2 people)</div></div></div>
     </div>
-    <div class="grand">Grand total: ~$12,350 CAD for 2 people &nbsp;·&nbsp; ~$685/person/day</div>
+    <div class="grand">Grand total: ~$14,834 CAD for 2 people &nbsp;·&nbsp; ~$825/person/day</div>
     <div class="grand-note">Includes Westfjords extension, Wilderness Center, Mývatn Nature Baths, and Vogafjós. Budget a 10–15% buffer for petrol, snacks, and spontaneous stops.</div>
     <div class="fx-note">All costs converted at 1 USD = 1.37 CAD (April 2026 average). Budget a 10–15% buffer for petrol, snacks, and spontaneous stops.</div>
   </div>
