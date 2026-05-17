@@ -58,10 +58,10 @@
   .booking-detail { font-size: 12px; color: #2a6070; line-height: 1.5; }
   .booking-url { font-size: 11px; color: #0e7490; margin-top: 3px; font-weight: 600; text-decoration: underline; }
   .booking-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
-  .booking-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
-  .badge-booked { background: #e8f3ec; color: #1a5a38; border: 0.5px solid #a8d4bc; }
-  .badge-urgent { background: #e0f2f7; color: #0a4a5a; border: 0.5px solid #7ab8c8; }
-  .badge-free { background: #e8f5f8; color: #0e7490; border: 0.5px solid #b8d8e0; }
+  .booking-badge { display: inline-block; font-size: 9px; font-weight: 600; padding: 1px 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .badge-booked { background: #e8f3ec; color: #1a5a38; border: 0.5px solid #a8caa8; }
+  .badge-urgent { background: #fff8ec; color: #9a6010; border: 0.5px solid #e8c98a; }
+  .badge-free { background: #f5f5f5; color: #888; border: 0.5px solid #ddd; }
   .booking-section { margin-bottom: 20px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
   .booking-section-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; font-size: 11px; font-weight: 700; color: #2a6070; text-transform: uppercase; letter-spacing: 0.07em; display: flex; align-items: center; gap: 8px; }
   .booking-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -122,7 +122,7 @@
   .tag-green { background: #e8f3ec; color: #1a5a38; }
   .tag-amber { background: #e0f2f7; color: #0a4a5a; }
   .tag-purple { background: #f0e8f8; color: #5b21b6; }
-  .trip-total { background: #fff; border: 1.5px solid #6aaaba; border-radius: 12px; padding: 14px 15px; margin-bottom: 14px; }
+  .trip-total { background: #fff; border: 1.5px solid #6aaaba; border-radius: 12px; padding: 14px 15px; margin-bottom: 32px; }
   .trip-total h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #0e7490; letter-spacing: 0.01em; }
   .total-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .total-item { background: #fff; border: 0.5px solid #c4e0e8; border-radius: 8px; padding: 8px 10px; }
@@ -135,24 +135,22 @@
 </head>
 <body>
 <div class="wrap">
-  <p style="font-size:10px;letter-spacing:0.12em;color:#4a8a9a;text-transform:uppercase;margin-bottom:6px;">Iceland &nbsp;·&nbsp; Ring Road &nbsp;·&nbsp; June 2026</p>
-  <h1>Anti-Clockwise + Westfjords</h1>
-  <p class="trip-sub">June 7–16, 2026 &nbsp;·&nbsp; 9 nights &nbsp;·&nbsp; 2 people &nbsp;·&nbsp; Birthday June 9 (South Coast) &nbsp;·&nbsp; Car from Day 2 &nbsp;·&nbsp; All costs in CAD</p>
+  <h1 style="text-align:center;">Iceland Ring Road with Westfjords</h1>
+  <p class="trip-sub" style="text-align:center;">June 7–16, 2026 &nbsp;·&nbsp; 9 nights &nbsp;·&nbsp; 2 people</p>
 
   <div class="trip-total">
-    <h3>Estimated trip total — 2 people (incl. flights)</h3>
+    <h3>Estimated trip total — 2 people (incl. flights) &nbsp;·&nbsp; <span style="font-weight:400;font-size:11px;color:#4a8a9a;">$7,742 confirmed so far</span></h3>
     <div class="total-grid">
-      <div class="total-item"><div class="tval">~$5,700</div><div class="tlabel">Hotels (9 nights)</div></div>
+      <div class="total-item"><div class="tval">~$5,700</div><div class="tlabel">Hotels (9 nights) · $2,258 confirmed</div></div>
       <div class="total-item"><div class="tval">~$1,900</div><div class="tlabel">Dining (9 days)</div></div>
       <div class="total-item"><div class="tval">~$1,200</div><div class="tlabel">Activities &amp; tours</div></div>
       <div class="total-item"><div class="tval">~$545</div><div class="tlabel">Transport &amp; ferry</div></div>
-      <div class="total-item"><div class="tval">~$3,000</div><div class="tlabel">Car rental (8 days)</div></div>
-      <div class="total-item"><div class="tval">$2,484</div><div class="tlabel">Flights — YVR return (2 people)</div></div></div>
+      <div class="total-item"><div class="tval">$3,000</div><div class="tlabel">Hertz — Land Rover Defender PHEV ✓ booked</div></div>
+      <div class="total-item"><div class="tval">$2,484</div><div class="tlabel">Flights — YVR return ✓ booked</div></div></div>
+      <div style="border-top:1.5px solid #c8ddc8;margin-top:14px;padding-top:14px;text-align:center;font-size:15px;font-weight:700;color:#0e7490;">
+        Grand total: ~$14,834 CAD for 2 people &nbsp;·&nbsp; ~$825/person/day
+      </div>
     </div>
-    <div class="grand">Grand total: ~$14,834 CAD for 2 people &nbsp;·&nbsp; ~$825/person/day</div>
-    <div class="grand-note">Includes Westfjords extension, Wilderness Center, Mývatn Nature Baths, and Vogafjós. Budget a 10–15% buffer for petrol, snacks, and spontaneous stops.</div>
-    <div class="fx-note">All costs converted at 1 USD = 1.37 CAD (April 2026 average). Budget a 10–15% buffer for petrol, snacks, and spontaneous stops.</div>
-  </div>
 
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('itinerary')">Itinerary</button>
@@ -165,7 +163,6 @@
   <div id="tab-itinerary" class="tab-panel active">
     <div id="days"></div>
   </div>
-
   <div id="tab-bookings" class="tab-panel">
     <div class="bookings-tab">
 
@@ -174,67 +171,49 @@
         <div class="booking-row">
           <input type="checkbox" class="booking-check" checked>
           <div class="booking-body">
-            <div class="booking-name">Baldur Ferry — Brjánslækur → Stykkishólmur <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-name">Hertz Car Rental — Land Rover Defender PHEV <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 2–10 · Mon Jun 8 10:00am → Tue Jun 16 7:30am</div>
+            <div class="booking-detail">Confirmation L5721642564. Pickup & drop-off: Reykjavík Flugvallarvegur, IS 101. Location hours: Mo–Fr 0800–1700, Sa–Su 0900–1500.</div>
+          </div>
+          <div class="booking-price">~$3,000 CAD</div>
+        </div>
             <div class="booking-day">Day 9 · Mon Jun 15 · 2:00pm departure</div>
             <div class="booking-detail">Ticket FER-T130447715. Departs 2pm sharp. 2.5hr crossing via Flatey island. Arrive Stykkishólmur ~4:30pm.</div>
           </div>
           <div class="booking-price">Already paid</div>
         </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Berjaya Mývatn <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 1 night</div>
+            <div class="booking-detail">Right on Lake Mývatn. Mylla Restaurant on site.</div>
+            <div class="booking-url">icelandhotelcollectionbyberjaya.com</div>
+          </div>
+          <div class="booking-price">~$654 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Hotel 1001 Nott <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 5 · Thu Jun 11 · 1 night</div>
+            <div class="booking-detail">Booked via Expedia.</div>
+            <div class="booking-url">1001nott.is</div>
+          </div>
+          <div class="booking-price">~$520 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Fosshotel Westfjords — Patreksfjörður <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Days 7+8 · Sat Jun 13 – Sun Jun 14 · 2 nights</div>
+            <div class="booking-detail">Booked via Expedia. ~$542 CAD/night.</div>
+            <div class="booking-url">islandshotel.is</div>
+          </div>
+          <div class="booking-price">~$1,084 CAD</div>
+        </div>
       </div>
 
-      <div class="booking-section">
-        <div class="booking-section-header"><div class="booking-dot" style="background:#E8A000"></div> Book Immediately — Sells Out Weeks Ahead</div>
-        <div class="booking-row">
-          <input type="checkbox" class="booking-check">
-          <div class="booking-body">
-            <div class="booking-name">Sky Lagoon — Sér Ritual <span class="booking-badge badge-urgent">Book now</span></div>
-            <div class="booking-day">Day 1 · Sun Jun 7 · 11:00am slot</div>
-            <div class="booking-detail">Private changing rooms + 7-step ritual. Sells out weeks ahead in June.</div>
-            <div class="booking-url">skylagoon.com</div>
-          </div>
-          <div class="booking-price">~$180 CAD x2</div>
-        </div>
-        <div class="booking-row">
-          <input type="checkbox" class="booking-check">
-          <div class="booking-body">
-            <div class="booking-name">Silfra Snorkel — Þingvellir <span class="booking-badge badge-urgent">Book now</span></div>
-            <div class="booking-day">Day 2 · Mon Jun 8 · 1:00pm slot</div>
-            <div class="booking-detail">Drysuit provided. 120m visibility between tectonic plates. Thermal underlayers essential — wear wool, not cotton. Book DIVE.IS or Arctic Adventures.</div>
-            <div class="booking-url">dive.is</div>
-          </div>
-          <div class="booking-price">~$320 CAD x2</div>
-        </div>
-        <div class="booking-row">
-          <input type="checkbox" class="booking-check">
-          <div class="booking-body">
-            <div class="booking-name">Jökulsárlón Zodiac Boat Tour <span class="booking-badge badge-urgent">Book now</span></div>
-            <div class="booking-day">Day 4 · Wed Jun 10 · 2:00pm slot</div>
-            <div class="booking-detail">Book the zodiac — NOT the amphibian bus. 45 min up close with icebergs. Sells out weeks ahead in June.</div>
-            <div class="booking-url">glacierlagoon.is</div>
-          </div>
-          <div class="booking-price">~$220 CAD x2</div>
-        </div>
-        <div class="booking-row">
-          <input type="checkbox" class="booking-check">
-          <div class="booking-body">
-            <div class="booking-name">Sólheimajökull Glacier Hike <span class="booking-badge badge-urgent">Book now</span></div>
-            <div class="booking-day">Day 3 · Tue Jun 9 · 1:30pm slot</div>
-            <div class="booking-detail">Guided crampons tour. Blue crevasses, active glacier surface. 2.5 hrs. Sell out in June.</div>
-            <div class="booking-url">glacierguides.is</div>
-          </div>
-          <div class="booking-price">~$270 CAD x2</div>
-        </div>
-        <div class="booking-row">
-          <input type="checkbox" class="booking-check">
-          <div class="booking-body">
-            <div class="booking-name">Friðheimar Farm — Lunch <span class="booking-badge badge-urgent">Book now</span></div>
-            <div class="booking-day">Day 2 · Mon Jun 8 · 2:00pm slot</div>
-            <div class="booking-detail">Geothermal greenhouse restaurant. Fills up fast in summer.</div>
-            <div class="booking-url">fridheimar.is</div>
-          </div>
-          <div class="booking-price">~$120 CAD x2</div>
-        </div>
-      </div>
 
       <div class="booking-section">
         <div class="booking-section-header"><div class="booking-dot" style="background:#378ADD"></div> Restaurants — Book 2–4 Weeks Ahead</div>
@@ -689,10 +668,10 @@
         <div class="hotel-option hotel-chosen">
           <input type="radio" name="hotel2" class="hotel-option-radio" checked>
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Hotel Geysir ⭐ — SELECTED</div>
-            <div class="hotel-option-why">Right beside Strokkur — watch the geyser erupt from the hotel. Geothermal hot tubs, great restaurant, views of the geothermal field. Book at geysircenter.is.</div>
+            <div class="hotel-option-name">Hotel Geysir ⭐ — BOOKED ✓</div>
+            <div class="hotel-option-why">Right beside Strokkur — watch the geyser erupt from the hotel. Geothermal hot tubs, great restaurant, views of the geothermal field.</div>
           </div>
-          <div class="hotel-option-price">~$300 CAD</div>
+          <div class="hotel-option-price">$484 CAD ✓</div>
         </div>
         <div class="hotel-option">
           <input type="radio" name="hotel2" class="hotel-option-radio">
@@ -745,10 +724,10 @@
         <div class="hotel-option hotel-chosen">
           <input type="radio" name="hotel4" class="hotel-option-radio" checked>
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Fosshotel Vatnajökull ⭐ — SELECTED</div>
-            <div class="hotel-option-why">5 minutes from Höfn along Route 1. Panoramic Vatnajökull views, modern rooms, good restaurant. Easy drive to Pakkhús for dinner. Book at islandshotel.is.</div>
+            <div class="hotel-option-name">Hótel Höfn ⭐ — BOOKED ✓</div>
+            <div class="hotel-option-why">Right on the Höfn waterfront. Glacier views from the breakfast room, 5 min walk to Pakkhús. Friendly staff. hotelhofn.is.</div>
           </div>
-          <div class="hotel-option-price">~$500 CAD</div>
+          <div class="hotel-option-price">$484 CAD ✓</div>
         </div>
         <div class="hotel-option">
           <input type="radio" name="hotel4" class="hotel-option-radio">
@@ -777,7 +756,7 @@
         <div class="hotel-option">
           <input type="radio" name="hotel5" class="hotel-option-radio">
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Hotel 1001 Nott</div>
+            <div class="hotel-option-name">Hotel 1001 Nott ⭐ — BOOKED ✓</div>
             <div class="hotel-option-why">Family-run, exceptional chef, outstanding wine list, cognac lounge with panoramic lake views. Best restaurant of the two. Book at 1001nott.is.</div>
           </div>
           <div class="hotel-option-price">~$580 CAD</div>
@@ -794,10 +773,10 @@
         <div class="hotel-option hotel-chosen">
           <input type="radio" name="hotel6" class="hotel-option-radio" checked>
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Berjaya Mývatn ⭐ — SELECTED</div>
+            <div class="hotel-option-name">Berjaya Mývatn ⭐ — BOOKED ✓</div>
             <div class="hotel-option-why">Right on Lake Mývatn. Mylla Restaurant is the standout — local reindeer, arctic char, lamb. Hot tubs on site (confirm geothermal water when booking). Book at icelandhotelcollectionbyberjaya.com.</div>
           </div>
-          <div class="hotel-option-price">~$600 CAD</div>
+          <div class="hotel-option-price">~$654 CAD</div>
         </div>
         <div class="hotel-option">
           <input type="radio" name="hotel6" class="hotel-option-radio">
@@ -818,7 +797,7 @@
         <div class="hotel-option hotel-chosen">
           <input type="radio" name="hotel7" class="hotel-option-radio" checked>
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ — SELECTED</div>
+            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓</div>
             <div class="hotel-option-why">Modern 40-room hotel. Gateway to Látrabjarg, Dynjandi and Rauðasandur. Restaurant Skel on site. ~$500 CAD/night. Book at islandshotel.is.</div>
           </div>
           <div class="hotel-option-price">~$500 CAD</div>
@@ -842,7 +821,7 @@
         <div class="hotel-option hotel-chosen">
           <input type="radio" name="hotel8" class="hotel-option-radio" checked>
           <div class="hotel-option-body">
-            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ — SELECTED</div>
+            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓</div>
             <div class="hotel-option-why">Second night. Rauðasandur and Látrabjarg both within an hour — the only sensible base. Book at islandshotel.is.</div>
           </div>
           <div class="hotel-option-price">~$500 CAD</div>
@@ -1013,10 +992,10 @@ const days = [
       {text:"Gullfoss — lower viewing platform (4:15pm)", note:"Golden afternoon light. Get properly spray-soaked. 45 min."},
       {text:"Kerið volcanic crater (5:15pm)", note:"15 min from Gullfoss. Vivid red and ochre crater walls with a teal lake at the bottom — one of the most photogenic spots in Iceland. ~1,000 ISK entry. Walk the rim and descend to the water. 45 min."},
     ],
-    hotel:"Hotel Geysir — Haukadalur ⭐",
+    hotel:"Hotel Geysir — Haukadalur ⭐", hotelBooked:true,
     hotelWhy:"Right beside Strokkur — you can watch the geyser erupt from the hotel. Geothermal hot tubs, great restaurant on site, views of the geothermal field. Book at geysircenter.is",
     costs:[
-      {item:"Hotel Geysir (1 night)", usd:220},
+      {item:"Hotel Geysir (1 night)", usd:353},
       {item:"Silfra snorkel x2", usd:320},
       {item:"Lunch at Friðheimar x2", usd:90},
       {item:"Kerið entry x2", usd:15},
@@ -1072,10 +1051,10 @@ const days = [
       {text:"Drive to Höfn (4:15pm)", note:"~80 km, about 1 hour. Vatnajökull filling the horizon the entire way."},
       {text:"Dinner at Pakkhús, Höfn ⭐ (6:30pm)", note:"Iceland's best langoustine. Book the tasting menu. Glacier views from the table."},
     ],
-    hotel:"Fosshotel Vatnajökull — near Höfn ⭐",
+    hotel:"Hótel Höfn — Höfn ⭐", hotelBooked:true,
     hotelWhy:"5 minutes from Höfn along Route 1. Panoramic Vatnajökull views, modern rooms, good restaurant. Easy drive to Pakkhús for dinner. ~$500 CAD/night. Book at islandshotel.is",
     costs:[
-      {item:"Fosshotel Vatnajökull (1 night)", usd:365},
+      {item:"Hótel Höfn (1 night)", usd:353},
       {item:"Jökulsárlón zodiac x2", usd:160},
       {item:"Pakkhús dinner x2 (tasting menu + wine)", usd:300},
       {item:"Lunch on the road", usd:40},
@@ -1101,10 +1080,10 @@ const days = [
       {text:"Arrive Egilsstaðir (5:00pm)", note:"Check in. Both hotels have hot tubs with lake views — get in immediately."},
       {text:"Dinner at hotel restaurant (7:30pm)", note:"Lake Hotel has a top-rated restaurant with lake views. Hotel 1001 Nott has the best chef of the two — reindeer, lamb, arctic char, exceptional wine list."},
     ],
-    hotel:"Lake Hotel Egilsstaðir or Hotel 1001 Nott ⭐⭐",
-    hotelWhy:"🥇 Lake Hotel Egilsstaðir (~$615 CAD) — secluded boutique on Lagarfljót lake, floor-to-ceiling lake views, hot tubs, top-rated restaurant. Book at lake.is. 🥈 Hotel 1001 Nott (~$580 CAD) — family-run, exceptional chef, outstanding wine list, cognac lounge with panoramic lake views. Best restaurant of the two. Book at 1001nott.is",
+    hotel:"Hotel 1001 Nott ⭐⭐ — BOOKED ✓",
+    hotelWhy:"✅ Hotel 1001 Nott (~$520 CAD) — BOOKED via Expedia. Family-run, exceptional chef, outstanding wine list, cognac lounge with panoramic lake views.",
     costs:[
-      {item:"Lake Hotel Egilsstaðir or Hotel 1001 Nott (1 night)", usd:435},
+      {item:"Hotel 1001 Nott (1 night) ✓ BOOKED", usd:380},
       {item:"Lunch on the road", usd:35},
       {item:"Dinner at hotel", usd:110},
       {item:"Petrol", usd:40},
@@ -1131,10 +1110,10 @@ const days = [
       {text:"Mývatn Nature Baths ⭐ (5:30pm)", note:"The finest geothermal bathing in Iceland — better than the Blue Lagoon in almost every way. Silica-rich geothermal water set right on the lake. Far fewer crowds, far better views. ~$75 CAD/person. Book ahead at myvatnnaturebaths.is. 1.5 hrs."},
       {text:"Dinner at Vogafjós Farm Restaurant ⭐ (8:00pm)", note:"Extraordinary farm-to-table restaurant on the lake shore — you can watch the cows being milked through the glass wall while you eat. Reindeer, arctic char, homemade skyr. One of the most unique dining experiences in Iceland. Book ahead at vogafjos.net."},
     ],
-    hotel:"Berjaya Mývatn or Fosshotel Mývatn ⭐",
-    hotelWhy:"🥇 Berjaya Mývatn (~$600 CAD) — right on Lake Mývatn, Mylla Restaurant is the standout (local reindeer, arctic char, lamb), hot tubs on site (confirm geothermal water when booking). Book at icelandhotelcollectionbyberjaya.com. 🥈 Fosshotel Mývatn (~$660 CAD) — unique grass-roof design right on the lake shore. Book at islandshotel.is",
+    hotel:"Berjaya Mývatn ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Berjaya Mývatn (~$654 CAD) — BOOKED via Expedia. Right on Lake Mývatn, Mylla Restaurant on site (local reindeer, arctic char, lamb), hot tubs.",
     costs:[
-      {item:"Fosshotel Mývatn (1 night)", usd:482},
+      {item:"Berjaya Mývatn (1 night) ✓ BOOKED", usd:477},
       {item:"Lunch on the road", usd:35},
       {item:"Mývatn Nature Baths x2", usd:110},
       {item:"Dinner at Vogafjós x2", usd:130},
@@ -1161,10 +1140,10 @@ const days = [
       {text:"Hellislaug hot spring (6:30pm)", note:"Natural geothermal pool carved into the rock on the beach, 5 min from the hotel. Free. Non-negotiable after 7.5 hrs in the car."},
       {text:"Dinner at Restaurant Skel (8:00pm)", note:"On site at the hotel. Local produce, good wine list. Early night — tomorrow is Látrabjarg."},
     ],
-    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐",
-    hotelWhy:"Modern 40-room hotel in Patreksfjörður, gateway to Látrabjarg, Dynjandi and Rauðasandur. Restaurant Skel serves local produce. Wake up 45 min from Látrabjarg. ~$500 CAD/night. Book at islandshotel.is",
+    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Fosshotel Westfjords (~$542 CAD) — BOOKED via Expedia. Modern 40-room hotel, Restaurant Skel on site. Gateway to Látrabjarg, Dynjandi and Rauðasandur.",
     costs:[
-      {item:"Fosshotel Westfjords (1 night)", usd:365},
+      {item:"Fosshotel Westfjords (1 night) ✓ BOOKED", usd:396},
       {item:"Lunch in Akureyri x2", usd:55},
       {item:"Brynja ice cream x2", usd:10},
       {item:"Dinner at hotel", usd:80},
@@ -1189,10 +1168,10 @@ const days = [
       {text:"Return to Patreksfjörður (3:30pm)", note:"Head to the town swimming pool — gorgeous outdoor pool with hot tubs overlooking the fjord, right in town. Far better than sitting in the hotel. ~$10 CAD entry."},
       {text:"Dinner at Restaurant Skel (7:00pm)", note:"Second night on site. Early night — tomorrow starts at 7am."},
     ],
-    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐",
-    hotelWhy:"Second night. Rauðasandur and Látrabjarg are both within an hour — the only sensible base.",
+    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Fosshotel Westfjords (~$542 CAD) — BOOKED via Expedia. Second night. Rauðasandur and Látrabjarg both within an hour.",
     costs:[
-      {item:"Fosshotel Westfjords (1 night)", usd:365},
+      {item:"Fosshotel Westfjords (1 night) ✓ BOOKED", usd:396},
       {item:"Patreksfjörður pool x2", usd:15},
       {item:"Dinner at hotel", usd:80},
       {item:"Petrol", usd:25},
@@ -1291,7 +1270,7 @@ days.forEach((d, i) => {
   }).join('');
 
   const hotelHtml = d.hotel ? `
-    <div class="section-label">Where to stay</div>
+    <div class="section-label">${d.hotelBooked ? '🏨 Hotel — Booked ✓' : 'Where to stay'}</div>
     <div class="hotel-box">
       <div class="hotel-name">${d.hotel}</div>
       <div class="hotel-why">${d.hotelWhy}</div>
