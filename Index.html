@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceland Ring Road — June 7–16, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #0d2d35; padding: 16px; }
+  .wrap { max-width: 700px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; color: #0d2d35; letter-spacing: -0.3px; }
+  .trip-sub { font-size: 12px; color: #2a6070; margin-bottom: 16px; letter-spacing: 0.02em; }
+  .legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #2a6070; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .day-card { background: #fff; border: 0.5px solid #b8d8e0; border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(44,31,14,0.06); }
+  .day-card.birthday { border: 2px solid #0e7490; }
+  .day-header { display: flex; align-items: center; gap: 10px; padding: 13px 15px; cursor: pointer; background: #fff; }
+  .day-header:hover { background: #f0f8fa; }
+  .day-badge { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; color: #fff; }
+  .day-title { flex: 1; min-width: 0; }
+  .day-date { font-size: 10px; color: #4a8a9a; letter-spacing: 0.04em; }
+  .day-name { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; color: #0d2d35; }
+  .day-sub { font-size: 11px; color: #2a6070; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bday-pill { font-size: 9px; padding: 2px 7px; border-radius: 7px; background: #e0f2f7; color: #0a4a5a; font-weight: 600; white-space: nowrap; border: 0.5px solid #7ab8c8; }
+  .west-pill { font-size: 9px; padding: 2px 7px; border-radius: 7px; background: #f0e8f8; color: #6b21a8; font-weight: 600; white-space: nowrap; }
+  .cost-badge { font-size: 11px; font-weight: 700; color: #0e7490; background: #e0f2f7; padding: 3px 9px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; border: 0.5px solid #7ab8c8; }
+  .chevron { font-size: 10px; color: #6aaaba; transition: transform 0.2s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(90deg); }
+  .day-body { display: none; padding: 0 15px 14px; border-top: 1px solid #daeef3; }
+  .day-body.open { display: block; }
+  .section-label { font-size: 10px; font-weight: 700; color: #6aaaba; text-transform: uppercase; letter-spacing: 0.08em; margin: 11px 0 5px; }
+  .activity { display: flex; gap: 8px; margin-bottom: 7px; }
+  .act-dot { width: 5px; height: 5px; border-radius: 50%; background: #6aaaba; margin-top: 5px; flex-shrink: 0; }
+  .act-text { font-size: 12px; font-weight: 600; color: #0d2d35; }
+  .act-note { font-size: 11px; color: #2a6070; margin-top: 1px; line-height: 1.45; }
+  .hotel-box { background: #f0f8fa; border: 0.5px solid #c4e0e8; border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
+  .hotel-name { font-size: 12px; font-weight: 700; color: #0d2d35; }
+  .hotel-why { font-size: 11px; color: #2a6070; margin-top: 2px; line-height: 1.4; }
+  .cost-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11px; }
+  .cost-table th { text-align: left; color: #6aaaba; font-weight: 700; font-size: 10px; text-transform: uppercase; padding: 3px 5px; border-bottom: 1px solid #d0e8ef; letter-spacing: 0.05em; }
+  .cost-table td { padding: 4px 5px; border-bottom: 1px solid #e8f5f8; color: #5a3e28; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-table .total-row td { font-weight: 700; color: #0e7490; border-top: 1px solid #e0d0be; padding-top: 6px; }
+  .warn-box { background: #e8f5f8; border: 0.5px solid #7ab8c8; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #0a4a5a; margin-top: 8px; line-height: 1.4; }
+  .info-box { background: #edf5f0; border: 0.5px solid #a8d4bc; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #1a5a3a; margin-top: 7px; line-height: 1.4; }
+  .ferry-box { background: #f3edf8; border: 0.5px solid #c9a8e0; border-radius: 8px; padding: 8px 11px; font-size: 11px; color: #5b2d82; margin-top: 7px; line-height: 1.4; }
+
+
+
+  .bookings-tab { padding: 4px 0; }
+  .booking-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; border-bottom: 0.5px solid #daeef3; }
+  .booking-row:last-child { border-bottom: none; }
+  .booking-check { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; accent-color: #0e7490; cursor: pointer; }
+  .booking-body { flex: 1; }
+  .booking-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .booking-day { font-size: 11px; color: #4a8a9a; margin-bottom: 3px; }
+  .booking-detail { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .booking-url { font-size: 11px; color: #0e7490; margin-top: 3px; font-weight: 600; text-decoration: underline; }
+  .booking-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .booking-badge { display: inline-block; font-size: 9px; font-weight: 600; padding: 1px 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .badge-booked { background: #e8f3ec; color: #1a5a38; border: 0.5px solid #a8caa8; }
+  .badge-urgent { background: #fff8ec; color: #9a6010; border: 0.5px solid #e8c98a; }
+  .badge-free { background: #f5f5f5; color: #888; border: 0.5px solid #ddd; }
+  .booking-section { margin-bottom: 20px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .booking-section-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; font-size: 11px; font-weight: 700; color: #2a6070; text-transform: uppercase; letter-spacing: 0.07em; display: flex; align-items: center; gap: 8px; }
+  .booking-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .rest-day { margin-bottom: 18px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .rest-day-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; display: flex; align-items: center; gap: 10px; }
+  .rest-day-badge { font-size: 11px; font-weight: 700; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rest-day-title { font-size: 13px; font-weight: 700; color: #0d2d35; }
+  .rest-day-date { font-size: 11px; color: #4a8a9a; margin-left: auto; }
+  .rest-option { padding: 12px 14px; border-bottom: 0.5px solid #daeef3; display: flex; align-items: flex-start; gap: 12px; }
+  .rest-option:last-child { border-bottom: none; }
+  .rest-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #0e7490; width: 15px; height: 15px; cursor: pointer; }
+  .rest-option-body { flex: 1; }
+  .rest-option-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .rest-option-why { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .rest-option-known { font-size: 11px; color: #4a8a9a; margin-top: 3px; font-style: italic; }
+  .rest-option-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .rest-chosen { background: #f0f8fa; }
+  .rest-chosen .rest-option-name { color: #0e7490; }
+  .rest-meal-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #6aaaba; margin-bottom: 8px; padding: 0 14px; padding-top: 10px; }
+  .hotels-tab { padding: 4px 0; }
+  .hotel-night { margin-bottom: 20px; border: 0.5px solid #b8d8e0; border-radius: 10px; overflow: hidden; }
+  .hotel-night-header { background: #f0f8fa; padding: 10px 14px; border-bottom: 0.5px solid #b8d8e0; display: flex; align-items: center; gap: 10px; }
+  .hotel-night-badge { font-size: 11px; font-weight: 700; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .hotel-night-title { font-size: 13px; font-weight: 700; color: #0d2d35; }
+  .hotel-night-date { font-size: 11px; color: #4a8a9a; margin-left: auto; }
+  .hotel-option { padding: 12px 14px; border-bottom: 0.5px solid #daeef3; display: flex; align-items: flex-start; gap: 12px; }
+  .hotel-option:last-child { border-bottom: none; }
+  .hotel-option-radio { margin-top: 2px; flex-shrink: 0; accent-color: #0e7490; width: 15px; height: 15px; cursor: pointer; }
+  .hotel-option-body { flex: 1; }
+  .hotel-option-name { font-size: 13px; font-weight: 700; color: #0d2d35; margin-bottom: 2px; }
+  .hotel-option-why { font-size: 12px; color: #2a6070; line-height: 1.5; }
+  .hotel-option-price { font-size: 12px; font-weight: 700; color: #0e7490; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
+  .hotel-chosen { background: #f0f8fa; }
+  .hotel-chosen .hotel-option-name { color: #0e7490; }
+  .tab-nav { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1.5px solid #b8d8e0; }
+  .tab-btn { padding: 8px 14px; font-size: 12px; font-weight: 600; color: #4a8a9a; background: none; border: none; border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; cursor: pointer; transition: color 0.15s; letter-spacing: 0.01em; }
+  .tab-btn.active { color: #0d2d35; border-bottom-color: #0e7490; }
+  .tab-btn:hover:not(.active) { color: #0e7490; }
+  .tab-panel { display: none !important; }
+  .tab-panel.active { display: block !important; }
+  .drive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .drive-table thead th { font-size: 11px; font-weight: 700; color: #6aaaba; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 6px 10px 8px; border-bottom: 1.5px solid #b8d8e0; }
+  .drive-table thead th:nth-child(3) { text-align: right; }
+  .drive-table tbody tr:hover { background: #f0f8fa; }
+  .drive-table td { padding: 11px 10px; border-bottom: 1px solid #daeef3; vertical-align: middle; color: #0d2d35; }
+  .drive-table td:nth-child(3) { text-align: right; font-variant-numeric: tabular-nums; }
+  .drive-table .total-row td { font-weight: 700; border-bottom: none; border-top: 1.5px solid #b8d8e0; padding-top: 12px; color: #0e7490; }
+  .drive-day { font-weight: 700; font-size: 13px; color: #0d2d35; }
+  .drive-date { font-size: 11px; color: #6aaaba; margin-top: 1px; }
+  .bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .bar-bg { flex: 1; background: #d0e8ef; border-radius: 4px; height: 7px; overflow: hidden; }
+  .bar-fill { height: 7px; border-radius: 4px; }
+  .bar-label { font-size: 12px; color: #2a6070; white-space: nowrap; min-width: 90px; }
+  .big-day { font-size: 10px; font-weight: 700; background: #e0f2f7; color: #0a4a5a; border-radius: 4px; padding: 2px 5px; margin-left: 4px; }
+  .drive-bar { font-size: 11px; color: #999; padding: 7px 0 0; border-top: 1px solid #f0f0f0; margin-top: 8px; }
+  .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 6px; margin: 2px 2px 0 0; border: 0.5px solid rgba(44,31,14,0.12); }
+  .tag-blue { background: #e8f0f8; color: #1a4a7a; }
+  .tag-green { background: #e8f3ec; color: #1a5a38; }
+  .tag-amber { background: #e0f2f7; color: #0a4a5a; }
+  .tag-purple { background: #f0e8f8; color: #5b21b6; }
+  .trip-total { background: #fff; border: 1.5px solid #6aaaba; border-radius: 12px; padding: 14px 15px; margin-bottom: 32px; }
+  .trip-total h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #0e7490; letter-spacing: 0.01em; }
+  .total-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .total-item { background: #fff; border: 0.5px solid #c4e0e8; border-radius: 8px; padding: 8px 10px; }
+  .total-item .tval { font-size: 15px; font-weight: 700; color: #0d2d35; }
+  .total-item .tlabel { font-size: 10px; color: #4a8a9a; margin-top: 1px; }
+  .grand { margin-top: 10px; font-size: 13px; font-weight: 700; color: #0e7490; }
+  .grand-note { font-size: 10px; color: #4a8a9a; margin-top: 3px; }
+  .fx-note { font-size: 10px; color: #6aaaba; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 style="text-align:center;">Iceland Ring Road with Westfjords</h1>
+  <p class="trip-sub" style="text-align:center;">June 7–16, 2026 &nbsp;·&nbsp; 9 nights &nbsp;·&nbsp; 2 people</p>
+
+  <div class="trip-total">
+    <h3>Estimated trip total — 2 people (incl. flights)</h3>
+    <div class="total-grid">
+      <div class="total-item"><div class="tval">$4,622</div><div class="tlabel">Hotels (9 nights)</div></div>
+      <div class="total-item"><div class="tval">$0</div><div class="tlabel">Dining (9 days)</div></div>
+      <div class="total-item"><div class="tval">$0</div><div class="tlabel">Activities &amp; tours</div></div>
+      <div class="total-item"><div class="tval">$240</div><div class="tlabel">Flybus + Ferry · $60/person each way × 2</div></div>
+      <div class="total-item"><div class="tval">$0</div><div class="tlabel">Gas</div></div>
+      <div class="total-item"><div class="tval">$3,000</div><div class="tlabel">Hertz — Land Rover Defender PHEV ✓ booked</div></div>
+      <div class="total-item"><div class="tval">$2,484</div><div class="tlabel">Flights — YVR return ✓ booked</div></div></div>
+      <div style="border-top:1.5px solid #c8ddc8;margin-top:14px;padding-top:14px;text-align:center;font-size:15px;font-weight:700;color:#0e7490;">
+        Grand total: $10,346 CAD for 2 people &nbsp;·&nbsp; $517/person/day
+      </div>
+    </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('itinerary', this)">Itinerary</button>
+    <button class="tab-btn" onclick="switchTab('driving', this)">Driving distances</button>
+    <button class="tab-btn" onclick="switchTab('hotels', this)">Hotels</button>
+    <button class="tab-btn" onclick="switchTab('restaurants', this)">Restaurants</button>
+    <button class="tab-btn" onclick="switchTab('bookings', this)">Bookings</button>
+    <button class="tab-btn" onclick="switchTab('info', this)">Need to Know</button>
+  </div>
+
+  <div id="tab-itinerary" class="tab-panel active">
+    <div id="day-nav" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;"></div>
+    <div id="days"></div>
+  </div>
+  <div id="tab-bookings" class="tab-panel">
+    <div class="bookings-tab">
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#E24B4A"></div> Already Booked</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Hertz Car Rental — Land Rover Defender PHEV <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 2–10 · Mon Jun 8 10:00am → Tue Jun 16 7:30am</div>
+            <div class="booking-detail">Confirmation L5721642564. Pickup & drop-off: Reykjavík Flugvallarvegur, IS 101. Location hours: Mo–Fr 0800–1700, Sa–Su 0900–1500.</div>
+          </div>
+          <div class="booking-price">~$3,000 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Baldur Ferry — Brjánslækur to Stykkishólmur <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 9 · Mon Jun 15 · 2:00pm departure</div>
+            <div class="booking-detail">Ticket FER-T130447715. Departs 2pm sharp. 2.5hr crossing via Flatey island. Arrive Stykkishólmur ~4:30pm.</div>
+          </div>
+          <div class="booking-price">Already paid</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Berjaya Mývatn <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 1 night</div>
+            <div class="booking-detail">Right on Lake Mývatn. Mylla Restaurant on site.</div>
+            <div class="booking-url">icelandhotelcollectionbyberjaya.com</div>
+          </div>
+          <div class="booking-price">~$654 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Hotel 1001 Nott <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Day 5 · Thu Jun 11 · 1 night</div>
+            <div class="booking-detail">Booked via Expedia.</div>
+            <div class="booking-url">1001nott.is</div>
+          </div>
+          <div class="booking-price">~$520 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Fosshotel Westfjords — Patreksfjörður <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Days 7+8 · Sat Jun 13 – Sun Jun 14 · 2 nights</div>
+            <div class="booking-detail">Booked via Expedia. ~$542 CAD/night.</div>
+            <div class="booking-url">islandshotel.is</div>
+          </div>
+          <div class="booking-price">~$1,084 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Hotel Borg — Reykjavík <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Night 1 · Sun Jun 7 · 1 night</div>
+            <div class="booking-detail">Booked via Luxury Escapes. Art Deco landmark on Austurvöllur Square.</div>
+            <div class="booking-url">keahotels.is</div>
+          </div>
+          <div class="booking-price">$420 CAD</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check" checked>
+          <div class="booking-body">
+            <div class="booking-name">Apotek Hotel — Reykjavík <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="booking-day">Night 9 · Mon Jun 15 · 1 night (final)</div>
+            <div class="booking-detail">Booked via Luxury Escapes. Boutique hotel in a former pharmacy building. Walkable to Grillmarkaðurinn.</div>
+            <div class="booking-url">apotekhotel.is</div>
+          </div>
+          <div class="booking-price">$420 CAD</div>
+        </div>
+      </div>
+
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#378ADD"></div> Restaurants — Book 2–4 Weeks Ahead</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Matur og Drykkur — Dinner</div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · 7:00pm</div>
+            <div class="booking-detail">À la carte. Old harbour. Modern Icelandic.</div>
+            <div class="booking-url">maturogdrykkur.is</div>
+          </div>
+          <div class="booking-price">~$220 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Pakkhús — Dinner</div>
+            <div class="booking-day">Day 4 · Wed Jun 10 · 6:30pm</div>
+            <div class="booking-detail">Iceland's best langoustine. Book the tasting menu. Glacier views.</div>
+            <div class="booking-url">pakkhus.is</div>
+          </div>
+          <div class="booking-price">~$260 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Vogafjós Farm Restaurant — Dinner</div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 8:00pm</div>
+            <div class="booking-detail">Farm-to-table on the Mývatn lake shore. Watch the cows being milked through the glass.</div>
+            <div class="booking-url">vogafjos.net</div>
+          </div>
+          <div class="booking-price">~$200 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Café Riis — Dinner (if doing Hólmavík split)</div>
+            <div class="booking-day">Day 7 · Sat Jun 13 · 7:30pm</div>
+            <div class="booking-detail">Best restaurant in Hólmavík. Local fish and lamb.</div>
+            <div class="booking-url">Search: Café Riis Hólmavík</div>
+          </div>
+          <div class="booking-price">~$100 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Grillmarkaðurinn — Final Dinner</div>
+            <div class="booking-day">Day 9 · Mon Jun 15 · 8:00pm</div>
+            <div class="booking-detail">Wood-fired Icelandic lamb and langoustine. Tasting menu or à la carte.</div>
+            <div class="booking-url">grillmarkadurinn.is</div>
+          </div>
+          <div class="booking-price">~$300 CAD x2</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#1D9E75"></div> Book 1–2 Weeks Ahead</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Mývatn Nature Baths</div>
+            <div class="booking-day">Day 6 · Fri Jun 12 · 5:30pm</div>
+            <div class="booking-detail">Best geothermal bathing in Iceland. ~$75 CAD/person. Book a time slot ahead.</div>
+            <div class="booking-url">myvatnnaturebaths.is</div>
+          </div>
+          <div class="booking-price">~$150 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Flybus Plus — Keflavík to Reykjavík</div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · ~7:00am arrival</div>
+            <div class="booking-detail">45 min. Drop-off near Hotel Borg.</div>
+            <div class="booking-url">flybus.is</div>
+          </div>
+          <div class="booking-price">~$60 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Flybus — Reykjavík to Keflavík (departure)</div>
+            <div class="booking-day">Day 10 · Tue Jun 16 · depart by 8:00am</div>
+            <div class="booking-detail">Book return journey at same time. Picks up from BSÍ bus terminal.</div>
+            <div class="booking-url">re.is</div>
+          </div>
+          <div class="booking-price">~$60 CAD x2</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#aaa"></div> Free — No Booking Required</div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Kolaportið Flea Market <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 1 · Sun Jun 7 · 9:00am</div>
+            <div class="booking-detail">Sunday only. Just show up. Runs 11am–5pm.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Kerið Volcanic Crater <span class="booking-badge badge-free">Walk-up</span></div>
+            <div class="booking-day">Day 2 · Mon Jun 8 · ~5:15pm</div>
+            <div class="booking-detail">~1,000 ISK entry (~$10 CAD). Pay at the gate.</div>
+          </div>
+          <div class="booking-price">~$20 CAD x2</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Hellislaug Hot Spring <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 7 · Sat Jun 13 · en route</div>
+            <div class="booking-detail">Natural pool on the beach off Route 61. Free, no booking.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Garðar BA 64 Shipwreck <span class="booking-badge badge-free">Free</span></div>
+            <div class="booking-day">Day 8 · Sun Jun 14 · en route</div>
+            <div class="booking-detail">On Route 612. Free photo stop, no booking needed.</div>
+          </div>
+          <div class="booking-price">Free</div>
+        </div>
+        <div class="booking-row">
+          <input type="checkbox" class="booking-check">
+          <div class="booking-body">
+            <div class="booking-name">Patreksfjörður Town Pool <span class="booking-badge badge-free">Walk-up</span></div>
+            <div class="booking-day">Day 8 · Sun Jun 14 · afternoon</div>
+            <div class="booking-detail">Outdoor pool + hot tubs with fjord views. Pay at the door.</div>
+          </div>
+          <div class="booking-price">~$20 CAD x2</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="tab-restaurants" class="tab-panel">
+    <div class="hotels-tab">
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#3B8BD4">1</div>
+          <div class="rest-day-title">Day 1 — Reykjavík</div>
+          <div class="rest-day-date">Sun Jun 7</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d1" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Matur og Drykkur ⭐ — SELECTED</div>
+            <div class="rest-option-why">Old harbour. À la carte — skip the full tasting menu on an arrival day. Salt cod, lamb, skyr dessert are the standouts. Book ahead at maturogdrykkur.is.</div>
+            <div class="rest-option-known">Known for: Salt cod head, whole roasted lamb, historic Icelandic recipes reinterpreted</div>
+          </div>
+          <div class="rest-option-price">~$110 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d1" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Grillmarkaðurinn (The Grill Market)</div>
+            <div class="rest-option-why">Wood-fired meats and seafood. Tasting menu takes you around Iceland one dish at a time. Beautiful room, easier to book than Dill. Book at grillmarkadurinn.is.</div>
+            <div class="rest-option-known">Known for: Dry-aged lamb, langoustine, puffin, wood-fired everything</div>
+          </div>
+          <div class="rest-option-price">~$150 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d1" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Fiskfélagið (Fish Company)</div>
+            <div class="rest-option-why">Near the old harbour. Icelandic seafood with global influences — tandoori monkfish, sushi-style arctic char. Intimate, maritime-themed. Book at fishcompany.is.</div>
+            <div class="rest-option-known">Known for: Creative seafood, fusion Icelandic-Asian dishes, extensive wine list</div>
+          </div>
+          <div class="rest-option-price">~$130 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#3B8BD4">2</div>
+          <div class="rest-day-title">Day 2 — Golden Circle</div>
+          <div class="rest-day-date">Mon Jun 8</div>
+        </div>
+        <div class="rest-meal-type">Lunch</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d2l" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Friðheimar Farm ⭐ — SELECTED</div>
+            <div class="rest-option-why">Geothermal greenhouse tomato restaurant between Þingvellir and Geysir. Sounds gimmicky, becomes a trip highlight. Book ahead at fridheimar.is — fills up.</div>
+            <div class="rest-option-known">Known for: Tomato soup, Bloody Mary bar, homemade bread, eating inside a working greenhouse</div>
+          </div>
+          <div class="rest-option-price">~$60 CAD pp</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d2d" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Hotel Geysir Restaurant — SELECTED</div>
+            <div class="rest-option-why">On site at the hotel — Icelandic lamb, fresh fish, good wine list. After a long driving day, staying in is the right call. Book when reserving the hotel.</div>
+            <div class="rest-option-known">Known for: Icelandic lamb, views of the geothermal field, convenience</div>
+          </div>
+          <div class="rest-option-price">~$90 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#1D9E75">3</div>
+          <div class="rest-day-title">Day 3 — South Coast (Birthday) 🎂</div>
+          <div class="rest-day-date">Tue Jun 9</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d3" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Hotel Jökulsárlón Restaurant — SELECTED</div>
+            <div class="rest-option-why">On site at the hotel. Birthday dinner next to a glacier lagoon — order the lamb and a good bottle of wine. The setting does most of the work.</div>
+            <div class="rest-option-known">Known for: Glacier views, Icelandic lamb and fish, romantic setting</div>
+          </div>
+          <div class="rest-option-price">~$120 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#D85A30">4</div>
+          <div class="rest-day-title">Day 4 — Höfn</div>
+          <div class="rest-day-date">Wed Jun 10</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d4" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Pakkhús ⭐ — SELECTED</div>
+            <div class="rest-option-why">Iceland's best langoustine. Right in Höfn harbour. Book the tasting menu — glacier views from the table. Essential. Book at pakkhus.is.</div>
+            <div class="rest-option-known">Known for: Langoustine tasting menu, Vatnajökull glacier views, being the best seafood outside Reykjavík</div>
+          </div>
+          <div class="rest-option-price">~$130 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d4" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Humarhöfnin (Lobster House)</div>
+            <div class="rest-option-why">Höfn's other langoustine specialist. Slightly more casual than Pakkhús but equally good shellfish. Good fallback if Pakkhús is full. Book at humarhofnin.is.</div>
+            <div class="rest-option-known">Known for: Langoustine soup, grilled langoustine, informal harbourside dining</div>
+          </div>
+          <div class="rest-option-price">~$100 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#D85A30">5</div>
+          <div class="rest-day-title">Day 5 — East Iceland</div>
+          <div class="rest-day-date">Thu Jun 11</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d5" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Wilderness Center Restaurant — SELECTED</div>
+            <div class="rest-option-why">Farm-to-table, almost everything sourced on site. Reindeer, lamb, arctic char. One of the most memorable meals on the trip — in complete silence in the highlands. On site.</div>
+            <div class="rest-option-known">Known for: Hyper-local sourcing, reindeer, highland lamb, complete remoteness</div>
+          </div>
+          <div class="rest-option-price">~$100 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#9F77DD">6</div>
+          <div class="rest-day-title">Day 6 — Mývatn</div>
+          <div class="rest-day-date">Fri Jun 12</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d6" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Vogafjós Farm Restaurant ⭐ — SELECTED</div>
+            <div class="rest-option-why">You can watch the cows being milked through a glass wall while you eat. Farm-to-table on the lake shore. One of the most unique dining experiences in Iceland. Book ahead at vogafjos.net.</div>
+            <div class="rest-option-known">Known for: Cows-through-the-window experience, reindeer, arctic char, homemade skyr desserts</div>
+          </div>
+          <div class="rest-option-price">~$100 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d6" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Mylla Restaurant — Berjaya Mývatn</div>
+            <div class="rest-option-why">On site at the hotel. Standout restaurant for the region — local reindeer, arctic char, lamb. Good fallback if Vogafjós is full. Book at icelandhotelcollectionbyberjaya.com.</div>
+            <div class="rest-option-known">Known for: Reindeer, lake views, local North Iceland produce</div>
+          </div>
+          <div class="rest-option-price">~$90 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#9F77DD">7</div>
+          <div class="rest-day-title">Day 7 — Drive to Westfjords</div>
+          <div class="rest-day-date">Sat Jun 13</div>
+        </div>
+        <div class="rest-meal-type">Coffee + Ice Cream Stop — Akureyri</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d7s" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Lemon Bakery + Brynja Ice Cream — SELECTED</div>
+            <div class="rest-option-why">Quick stop in Akureyri. Coffee and pastry at Lemon Bakery, then Brynja ice cream — been going since 1939, people drive across Iceland for it. 30 min total.</div>
+            <div class="rest-option-known">Known for: Brynja — Iceland's most famous ice cream parlour. The scoop is non-negotiable.</div>
+          </div>
+          <div class="rest-option-price">~$20 CAD pp</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d7d" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Restaurant Skel — Fosshotel Westfjords — SELECTED</div>
+            <div class="rest-option-why">On site at the hotel. Local produce, good wine list. After 7.5 hrs of driving, staying in is the only sensible call.</div>
+            <div class="rest-option-known">Known for: Local fish and lamb, Westfjords produce, convenience</div>
+          </div>
+          <div class="rest-option-price">~$80 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#7C3AED">8</div>
+          <div class="rest-day-title">Day 8 — Westfjords</div>
+          <div class="rest-day-date">Sun Jun 14</div>
+        </div>
+        <div class="rest-meal-type">Beach Café</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d8c" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Franska Kaffihúsið — Rauðasandur Beach — SELECTED</div>
+            <div class="rest-option-why">Tiny café right on the beach. Icelandic waffles, cakes, and coffee while you watch seals. One of the most surreal café locations in the world.</div>
+            <div class="rest-option-known">Known for: Icelandic waffles with jam and cream, being in the middle of nowhere</div>
+          </div>
+          <div class="rest-option-price">~$15 CAD pp</div>
+        </div>
+        <div class="rest-meal-type">Dinner</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d8d" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Restaurant Skel — Fosshotel Westfjords — SELECTED</div>
+            <div class="rest-option-why">Second night on site. Local produce, good wine list. Early night — tomorrow starts at 7am.</div>
+            <div class="rest-option-known">Known for: Local Westfjords fish, lamb, on-site convenience</div>
+          </div>
+          <div class="rest-option-price">~$80 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d8d" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Heimsendi — Patreksfjörður</div>
+            <div class="rest-option-why">Local seafood restaurant in town, 5 min from the hotel. More casual than Skel. Great fresh fish caught from the fjord the same day.</div>
+            <div class="rest-option-known">Known for: Fresh local catch, casual atmosphere, good value</div>
+          </div>
+          <div class="rest-option-price">~$60 CAD pp</div>
+        </div>
+      </div>
+
+      <div class="rest-day">
+        <div class="rest-day-header">
+          <div class="rest-day-badge" style="background:#7C3AED">9</div>
+          <div class="rest-day-title">Day 9 — Ferry + Reykjavík</div>
+          <div class="rest-day-date">Mon Jun 15</div>
+        </div>
+        <div class="rest-meal-type">Lunch (on the ferry)</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d9l" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Baldur Ferry Restaurant — SELECTED</div>
+            <div class="rest-option-why">On board the ferry. Basic Icelandic food, but the scenery — Breiðafjörður bay, Flatey island — makes it one of the best lunch settings of the trip.</div>
+            <div class="rest-option-known">Known for: Lamb soup, fish of the day, 2.5 hrs of fjord views while you eat</div>
+          </div>
+          <div class="rest-option-price">~$35 CAD pp</div>
+        </div>
+        <div class="rest-meal-type">Dinner — Final Night</div>
+        <div class="rest-option rest-chosen">
+          <input type="radio" name="rest-d9d" class="rest-option-radio" checked>
+          <div class="rest-option-body">
+            <div class="rest-option-name">Grillmarkaðurinn ⭐ — SELECTED</div>
+            <div class="rest-option-why">Wood-fired Icelandic lamb, langoustine, and beef. Tasting menu takes you around Iceland one bite at a time. Similar quality to Dill at roughly half the price. Book ahead at grillmarkadurinn.is.</div>
+            <div class="rest-option-known">Known for: Japanese robata charcoal grill, dry-aged Icelandic lamb, langoustine, theatrical food presentation</div>
+          </div>
+          <div class="rest-option-price">~$150 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d9d" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Dill Restaurant ⭐ (Michelin)</div>
+            <div class="rest-option-why">Iceland's first Michelin-starred restaurant. Nordic tasting menu, 5 or 7 courses. Book months ahead at dillrestaurant.is. The prestige pick if budget isn't a concern.</div>
+            <div class="rest-option-known">Known for: First Michelin star in Iceland, hyper-seasonal Nordic cuisine, intimate 30-seat dining room</div>
+          </div>
+          <div class="rest-option-price">~$250 CAD pp</div>
+        </div>
+        <div class="rest-option">
+          <input type="radio" name="rest-d9d" class="rest-option-radio">
+          <div class="rest-option-body">
+            <div class="rest-option-name">Kol Restaurant</div>
+            <div class="rest-option-why">Swanky date-night restaurant on Skólavörðustígur. Icelandic fusion — local salmon and lamb with global techniques. The langoustine soup is exceptional. Book at kolrestaurant.is.</div>
+            <div class="rest-option-known">Known for: Langoustine soup, Icelandic fusion, excellent cocktails, good value for the quality</div>
+          </div>
+          <div class="rest-option-price">~$110 CAD pp</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="tab-hotels" class="tab-panel">
+    <div class="hotels-tab">
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#3B8BD4">1</div>
+          <div class="hotel-night-title">Night 1 — Reykjavík</div>
+          <div class="hotel-night-date">Sun Jun 7</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Hotel Borg by Keahotels ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Art Deco landmark on Austurvöllur Square. Walking distance to everything. Booked via Luxury Escapes.</div>
+          </div>
+          <div class="hotel-option-price">$420 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#3B8BD4">2</div>
+          <div class="hotel-night-title">Night 2 — Haukadalur (Golden Circle)</div>
+          <div class="hotel-night-date">Mon Jun 8</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Hotel Geysir ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Right beside Strokkur — watch the geyser erupt from the hotel. Geothermal hot tubs, great restaurant.</div>
+          </div>
+          <div class="hotel-option-price">$484 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#1D9E75">3</div>
+          <div class="hotel-night-title">Night 3 — Glacier Lagoon (Birthday) 🎂</div>
+          <div class="hotel-night-date">Tue Jun 9</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Hotel Klaustur ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Kirkjubæjarklaustur. Smart base between the South Coast and Vatnajökull. Booked at $556 CAD.</div>
+          </div>
+          <div class="hotel-option-price">$556 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#D85A30">4</div>
+          <div class="hotel-night-title">Night 4 — Höfn</div>
+          <div class="hotel-night-date">Wed Jun 10</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Hótel Höfn ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Right on the Höfn waterfront. Glacier views from the breakfast room, 5 min walk to Pakkhús.</div>
+          </div>
+          <div class="hotel-option-price">$484 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#D85A30">5</div>
+          <div class="hotel-night-title">Night 5 — East Iceland</div>
+          <div class="hotel-night-date">Thu Jun 11</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Hotel 1001 Nott ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Family-run, exceptional chef, outstanding wine list, cognac lounge with panoramic lake views.</div>
+          </div>
+          <div class="hotel-option-price">~$520 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#9F77DD">6</div>
+          <div class="hotel-night-title">Night 6 — Mývatn</div>
+          <div class="hotel-night-date">Fri Jun 12</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Berjaya Mývatn ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Right on Lake Mývatn. Mylla Restaurant on site — local reindeer, arctic char, lamb.</div>
+          </div>
+          <div class="hotel-option-price">~$654 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#9F77DD">7</div>
+          <div class="hotel-night-title">Night 7 — Patreksfjörður (Westfjords)</div>
+          <div class="hotel-night-date">Sat Jun 13</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Modern 40-room hotel. Gateway to Látrabjarg, Dynjandi and Rauðasandur. Restaurant Skel on site.</div>
+          </div>
+          <div class="hotel-option-price">~$542 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#7C3AED">8</div>
+          <div class="hotel-night-title">Night 8 — Patreksfjörður (Westfjords)</div>
+          <div class="hotel-night-date">Sun Jun 14</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Fosshotel Westfjords — Patreksfjörður ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Second night. Rauðasandur and Látrabjarg both within an hour — the only sensible base.</div>
+          </div>
+          <div class="hotel-option-price">~$542 CAD ✓</div>
+        </div>
+      </div>
+
+      <div class="hotel-night">
+        <div class="hotel-night-header">
+          <div class="hotel-night-badge" style="background:#3B8BD4">9</div>
+          <div class="hotel-night-title">Night 9 — Reykjavík (Final Night)</div>
+          <div class="hotel-night-date">Mon Jun 15</div>
+        </div>
+        <div class="hotel-option hotel-chosen">
+          <div class="hotel-option-body" style="padding-left:14px">
+            <div class="hotel-option-name">Apotek Hotel ⭐ <span class="booking-badge badge-booked">✓ BOOKED</span></div>
+            <div class="hotel-option-why">Boutique hotel in a former pharmacy building on Austurstræti. Central, stylish, excellent restaurant. Walkable to Grillmarkaðurinn. Booked via Luxury Escapes.</div>
+          </div>
+          <div class="hotel-option-price">$420 CAD ✓</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="tab-driving" class="tab-panel">
+    <table class="drive-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Route</th>
+          <th>Km</th>
+          <th style="padding-left:10px">Drive time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="drive-day">Day 2</div><div class="drive-date">Mon Jun 8</div></td>
+          <td>Reykjavík → Golden Circle → Hotel Geysir</td>
+          <td>130</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:26%;background:#378ADD"></div></div><span class="bar-label">2.5 hrs</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 3</div><div class="drive-date">Tue Jun 9</div></td>
+          <td>Hotel Geysir → South Coast → Hotel Klaustur</td>
+          <td>380</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:76%;background:#E24B4A"></div></div><span class="bar-label">5.5 hrs <span class="big-day">big day</span></span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 4</div><div class="drive-date">Wed Jun 10</div></td>
+          <td>Klaustur → Glacier Lagoon → Höfn</td>
+          <td>200</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:40%;background:#378ADD"></div></div><span class="bar-label">3 hrs</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 5</div><div class="drive-date">Thu Jun 11</div></td>
+          <td>Höfn → East Fjords → Egilsstaðir</td>
+          <td>200</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:40%;background:#378ADD"></div></div><span class="bar-label">3 hrs</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 6</div><div class="drive-date">Fri Jun 12</div></td>
+          <td>Egilsstaðir → Dettifoss → Mývatn</td>
+          <td>230</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:46%;background:#378ADD"></div></div><span class="bar-label">3.5 hrs</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 7</div><div class="drive-date">Sat Jun 13</div></td>
+          <td>Mývatn → Goðafoss → Akureyri → Patreksfjörður</td>
+          <td>570</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div><span class="bar-label">7.5 hrs <span class="big-day">big day</span></span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 8</div><div class="drive-date">Sun Jun 14</div></td>
+          <td>Rauðasandur + Látrabjarg loop</td>
+          <td>120</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:24%;background:#7C3AED"></div></div><span class="bar-label">3 hrs</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="drive-day">Day 9</div><div class="drive-date">Mon Jun 15</div></td>
+          <td>Patreksfjörður → Dynjandi → Brjánslækur → Reykjavík</td>
+          <td>230</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:46%;background:#7C3AED"></div></div><span class="bar-label">3 hrs + ferry</span></div></td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2">Total driving (Days 2–9)</td>
+          <td>1,950 km</td>
+          <td style="font-size:12px;color:#888;padding-left:10px">~29 hrs over 8 days</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div id="tab-info" class="tab-panel">
+    <div class="bookings-tab">
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#7C3AED"></div> Emergency &amp; Essential Numbers</div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Emergency Services (Police, Fire, Ambulance)</div>
+            <div class="booking-detail">112 — works anywhere in Iceland including remote areas</div>
+          </div>
+          <div class="booking-price" style="color:#E24B4A">112</div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Fosshotel Westfjords — Patreksfjörður</div>
+            <div class="booking-detail">Nights 7+8 · Jun 13–15. Restaurant booking: noona.is/fosshotelvestfirdir</div>
+            <div class="booking-url">+354 456 2004</div>
+          </div>
+          <div class="booking-price">+354 456 2004</div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Hertz Reykjavík — Car Rental</div>
+            <div class="booking-detail">Confirmation L5721642564. Pickup Jun 8 10am. Flugvallarvegur, IS 101.</div>
+            <div class="booking-url">hertz.is</div>
+          </div>
+          <div class="booking-price">+354 522 4400</div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Baldur Ferry — Seatours</div>
+            <div class="booking-detail">Ticket FER-T130447715. Jun 15 2pm Brjánslækur → Stykkishólmur</div>
+            <div class="booking-url">seatours.is</div>
+          </div>
+          <div class="booking-price">+354 433 2254</div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Flybus — Reykjavík ↔ Keflavík Airport</div>
+            <div class="booking-detail">Book at flybus.is · Picks up from BSÍ bus terminal</div>
+            <div class="booking-url">flybus.is</div>
+          </div>
+          <div class="booking-price">+354 540 2700</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#378ADD"></div> Road &amp; Weather — Check Before Every Drive</div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Road Conditions — Umferðin</div>
+            <div class="booking-detail">Check every morning. Shows road closures, F-road status, ice warnings.</div>
+            <div class="booking-url"><a href="https://umferdin.is/en" style="color:#0e7490">umferdin.is/en</a></div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Weather Forecast — Veðurstofa</div>
+            <div class="booking-detail">Iceland's official weather service. More accurate than international apps.</div>
+            <div class="booking-url"><a href="https://en.vedur.is" style="color:#0e7490">en.vedur.is</a></div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Safe Travel Iceland</div>
+            <div class="booking-detail">Register your itinerary here before driving remote roads. Rescue teams use it.</div>
+            <div class="booking-url"><a href="https://safetravel.is" style="color:#0e7490">safetravel.is</a></div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Westfjords Tours &amp; Activities</div>
+            <div class="booking-detail">Local tour desk for Westfjords — guides, kayaking, boat trips.</div>
+            <div class="booking-url"><a href="https://westfjords.tourdesk.is/Tour" style="color:#0e7490">westfjords.tourdesk.is/Tour</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#1D9E75"></div> Getting Around Reykjavík</div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Hopp — Local Taxi App</div>
+            <div class="booking-detail">Download before landing. Main taxi app in Reykjavík. Uber doesn't operate in Iceland.</div>
+            <div class="booking-url">hopp.is</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Hreyfill — Taxi</div>
+            <div class="booking-detail">Alternative to Hopp. Good for airport or late nights.</div>
+            <div class="booking-price">+354 588 5522</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">BSÍ Bus Terminal — Flybus pickup</div>
+            <div class="booking-detail">Vatnsmýrarvegur 10, Reykjavík. Where to catch the Flybus to Keflavík on Day 10.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <div class="booking-section-header"><div class="booking-dot" style="background:#D85A30"></div> Good to Know</div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Currency — Icelandic Króna (ISK)</div>
+            <div class="booking-detail">Cards accepted almost everywhere. No need for cash except Kerið crater (~1,000 ISK / ~$12 CAD). 1,000 ISK = $12 CAD. ATMs at Keflavík airport on arrival if needed.</div>
+          </div>
+        </div>
+        <div class="booking-row" style="display:block;padding:14px;">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;">
+            <div>
+              <div style="font-size:10px;font-weight:700;color:#6aaaba;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">ISK</div>
+              <input id="isk-input" type="number" placeholder="1000" style="width:100%;padding:8px 10px;border:1px solid #b8d8e0;border-radius:8px;font-size:16px;font-weight:600;color:#0d2d35;outline:none;" oninput="fromISK(this.value)">
+            </div>
+            <div style="font-size:18px;color:#6aaaba;font-weight:300;padding-top:20px;">=</div>
+            <div>
+              <div style="font-size:10px;font-weight:700;color:#6aaaba;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">CAD</div>
+              <input id="cad-input" type="number" placeholder="12" style="width:100%;padding:8px 10px;border:1px solid #b8d8e0;border-radius:8px;font-size:16px;font-weight:600;color:#0d2d35;outline:none;" oninput="fromCAD(this.value)">
+            </div>
+          </div>
+          <div style="font-size:10px;color:#6aaaba;margin-top:8px;text-align:center;">1,000 ISK = $12 CAD &nbsp;·&nbsp; tap either field to convert</div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Driving — important rules</div>
+            <div class="booking-detail">Speed limit: 90 km/h paved, 80 km/h gravel. Headlights on at all times (mandatory). Never drive off-road — illegal and a $5,000+ fine. F-roads require 4x4 — your Defender qualifies.</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Reynisfjara Black Sand Beach</div>
+            <div class="booking-detail">⚠️ Sneaker waves kill people every year. Stay 30m+ from the waterline at all times. Not negotiable.</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Midnight Sun — June</div>
+            <div class="booking-detail">It never gets fully dark. Bring a sleep mask. Sunrise ~3am, sunset ~midnight. Golden light at 11pm is extraordinary — stay up for it at least once.</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Packing essentials</div>
+            <div class="booking-detail">Waterproof jacket + trousers (mandatory). Layers — weather changes fast. Swimwear for every hot spring. Wool underlayers for Silfra snorkel. Good walking shoes with ankle support.</div>
+          </div>
+        </div>
+        <div class="booking-row">
+          <div class="booking-body">
+            <div class="booking-name">Petrol stations</div>
+            <div class="booking-detail">Fill up in every town — stations are sparse in the East Fjords and Westfjords. N1 and Orkan are the main chains. Card payment at unmanned pumps 24/7.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const CAD = 1.37;
+function usd(x) { return "~$" + Math.round(x * CAD / 5) * 5; }
+
+const days = [
+  {
+    num:1, date:"Sun Jun 7", color:"#3B8BD4",
+    name:"Arrive Reykjavík — no car",
+    sub:"Land 6am · Roasters · Kolaportið market · Sky Lagoon · city walk · Matur og Drykkur",
+    birthday:false, westfjords:false,
+    tags:["Hot springs","City"],
+    activities:[
+      {text:"Flybus Plus from Keflavík", note:"Book at flybus.is. 45 min. Drop-off near hotel."},
+      {text:"Reykjavík Roasters — coffee (8:00am)", note:"Best coffee in Iceland. Tiny specialty roastery on Brautarholt, 10 min walk from Hotel Borg. Get a flat white and a pastry before anything else. You've just landed — you need this."},
+      {text:"Kolaportið Flea Market (9:00am)", note:"Sunday only — and June 7 is a Sunday, so don't miss it. Local food stalls (try hákarl if you're brave), vintage Icelandic wool, secondhand books. One of the most authentically local things you can do in Reykjavík. Runs 11am–5pm but get there early. Free entry."},
+      {text:"Sky Lagoon — Sér Ritual package (11:00am slot)", note:"Private changing rooms + 7-step ritual. Book ahead at skylagoon.com — sells out. This is the right call after a red-eye flight."},
+      {text:"Walk: Hallgrímskirkja tower + interior → Rainbow Street → Laugavegur", note:"Tower elevator ~$10 CAD. Go inside the church too — if there's an organ rehearsal happening it's extraordinary. Then walk down Rainbow Street to Laugavegur for browsing and coffee."},
+      {text:"Sun Voyager seafront walk (4:00pm)", note:"Free 20 min walk along the harbour. Skip going inside Harpa unless there's a concert — the outside is the point."},
+      {text:"Dinner at Matur og Drykkur (7:00pm)", note:"Modern Icelandic cuisine in the old harbour. Skip the full tasting menu — order à la carte instead. The salt cod, lamb, and skyr dessert are the standouts. Book ahead at maturogdrykkur.is."},
+      {text:"Midnight sun walk around Tjörnin lake", note:"11pm golden light. It never gets dark in June. Utterly surreal — worth staying up for even on no sleep."},
+    ],
+    hotel:"Hotel Borg by Keahotels — central Reykjavík",
+    hotelWhy:"Art Deco landmark on Austurvöllur Square. Walking distance to everything. Book direct at keahotels.is.",
+    costs:[
+      {item:"Hotel Borg ✓ BOOKED", usd:307},
+      {item:"Flybus Plus x2", usd:88},
+      {item:"Sky Lagoon Sér Ritual x2", usd:130},
+      {item:"Hallgrímskirkja tower x2", usd:11},
+                      ],
+    drive:"No car today — cab, bus, or walk",
+    note:null,
+    info:"💡 Download Hopp or Hreyfill apps for local cabs before landing. Uber doesn't operate in Iceland.",
+    ferry:null
+  },
+  {
+    num:2, date:"Mon Jun 8", color:"#3B8BD4",
+    name:"Pick up car + Golden Circle",
+    sub:"Silfra snorkel · Þingvellir · Friðheimar · Geysir · Gullfoss · Kerið",
+    birthday:false, westfjords:false,
+    tags:["Snorkelling","Waterfalls","Landscapes"],
+    activities:[
+      {text:"Pick up 4x4 from Hertz Reykjavík Downtown (Flókagata) — 10am", note:"Photograph all existing scratches before driving off. Fill up with petrol in the city — cheaper than on the road. Leave by 10:45am."},
+      {text:"Þingvellir — Almannagjá fissure walk (11:30am)", note:"20 min. Walking between two tectonic plates is genuinely surreal. Free entry, 750 ISK parking. Don't linger — you have a snorkel slot to hit."},
+      {text:"Silfra snorkel at Þingvellir ⭐ (1pm slot)", note:"Book DIVE.IS or Arctic Adventures. Drysuit provided. 120m visibility between tectonic plates. 2.5 hrs total. Thermal underlayers essential — wear wool, not cotton. Out by 3:30pm."},
+      {text:"Lunch at Friðheimar Farm ⭐ (2:00pm)", note:"Geothermal greenhouse tomato restaurant — sounds gimmicky, becomes a trip highlight. Tomato soup, Bloody Mary, homemade bread. Book ahead at fridheimar.is. Every top travel agent puts this on the Golden Circle."},
+      {text:"Strokkur geyser — Haukadalur (3:30pm)", note:"Erupts every 5–10 min. Tour buses long gone. Stay on marked paths — the coloured pools are boiling. 30 min."},
+      {text:"Gullfoss — lower viewing platform (4:15pm)", note:"Golden afternoon light. Get properly spray-soaked. 45 min."},
+      {text:"Kerið volcanic crater (5:15pm)", note:"15 min from Gullfoss. Vivid red and ochre crater walls with a teal lake at the bottom — one of the most photogenic spots in Iceland. ~1,000 ISK entry. Walk the rim and descend to the water. 45 min."},
+    ],
+    hotel:"Hotel Geysir — Haukadalur ⭐", hotelBooked:true,
+    hotelWhy:"Right beside Strokkur — you can watch the geyser erupt from the hotel. Geothermal hot tubs, great restaurant on site, views of the geothermal field. Book at geysircenter.is",
+    costs:[
+      {item:"Hotel Geysir ✓ BOOKED", usd:353},
+      {item:"Silfra snorkel x2", usd:320},
+            {item:"Kerið entry x2", usd:15},
+          ],
+    drive:"~130 km · ~2.5 hrs driving",
+    note:null,
+    info:"💡 10am pickup → petrol → leave 10:45am → Þingvellir 11:30am → 1pm Silfra → out 3:30pm → Friðheimar lunch → Geysir 3:30pm → Gullfoss 4:15pm → Kerið 5:15pm → hotel by 7pm. Book Silfra and Friðheimar the moment you confirm. Both sell out.",
+    ferry:null
+  },
+  {
+    num:3, date:"Tue Jun 9", color:"#1D9E75",
+    name:"South Coast + Birthday! 🎂",
+    sub:"Seljalandsfoss · Skógafoss · Glacier hike · Reynisfjara · Fosshotel Glacier Lagoon",
+    birthday:true, westfjords:false,
+    tags:["Waterfalls","Glaciers","Puffins"],
+    activities:[
+      {text:"Leave Hotel Geysir — 10:00am", note:"~100 km to Seljalandsfoss, about 1.5 hrs. Fill up petrol before leaving."},
+      {text:"Seljalandsfoss — walk behind the waterfall (11:30am)", note:"45 min. Bring a spare top — you will get wet. One of the best waterfalls in Iceland."},
+      {text:"Skógafoss — climb 500 steps to the top (12:30pm)", note:"45 min. Views down the entire south coast. Puffins nesting on the cliffs in June."},
+      {text:"Sólheimajökull glacier hike ⭐ (1:30pm)", note:"Book the 1:30pm guided crampons slot. Blue crevasses, active glacier surface. 2.5 hrs — out by 4pm. ~$135 CAD/person."},
+      {text:"Reynisfjara black sand beach (4:00pm)", note:"1.5 hrs — take your time, it's your birthday. Stay 30m+ from the waterline; sneaker waves are genuinely deadly, non-negotiable. Puffins nesting on the cliffs in June. Walk to the basalt columns at Hálsanef."},
+      {text:"Drive east to Fosshotel (5:45pm)", note:"~2 hrs across the black sand plains with Vatnajökull filling the entire horizon. One of the great drives in Iceland."},
+      {text:"Birthday dinner at Fosshotel (8:00pm)", note:"Check in, freshen up. Dinner from 8:30pm. Order the lamb, get a good bottle of wine, and let it sink in that you're spending your birthday next to a glacier lagoon in Iceland."},
+    ],
+    hotel:"Fosshotel Glacier Lagoon or Hotel Jökulsárlón ⭐⭐",
+    hotelWhy:"🥇 Fosshotel Glacier Lagoon (~$850 CAD) — proven glacier hotel, book glacier view room at islandshotel.is. 🥈 Hotel Jökulsárlón (~$950 CAD) — brand new 2024, floor-to-ceiling windows right at the lagoon, hoteljokulsarlon.is",
+    costs:[
+      {item:"Hotel Klaustur ✓ BOOKED", usd:406},
+      {item:"Glacier hike x2 (Sólheimajökull)", usd:200},
+                ],
+    drive:"~380 km · ~5.5 hrs driving total",
+    note:"⚠️ Reynisfjara: rogue waves kill people every year. Maintain 30m+ from the waterline. Non-negotiable.",
+    info:"🎂 Leave Hotel Geysir at 10am sharp. 8pm arrival at Fosshotel with full June daylight. Not a bad way to turn another year older.",
+    ferry:null
+  },
+  {
+    num:4, date:"Wed Jun 10", color:"#D85A30",
+    name:"Glaciers, Icebergs + Höfn",
+    sub:"Skaftafell · Fjallsárlón · Jökulsárlón zodiac · Diamond Beach · Höfn",
+    birthday:false, westfjords:false,
+    tags:["Glaciers","Wildlife","Food"],
+    activities:[
+      {text:"Morning walk at the glacier lagoon (9:30am)", note:"Step outside before checkout. Vatnajökull at 9am in June light is something you won't forget."},
+      {text:"Skaftafell — hike to Svartifoss waterfall (10:00am)", note:"2.5hr return, moderate. Basalt column waterfall through birch forest. Go early — tour buses arrive after 11am. Out by 12:30pm."},
+      {text:"Fjallsárlón glacier lagoon (1:00pm)", note:"45 min. Less crowded than Jökulsárlón, equally stunning, better mountain backdrop. Seals often spotted here."},
+      {text:"Jökulsárlón zodiac boat tour ⭐ (2:00pm)", note:"Book the 2pm zodiac slot — NOT the amphibian bus. 45 min up close with icebergs. Pre-book at glacierlagoon.is — sells out weeks ahead in June. ~$110 CAD/person."},
+      {text:"Diamond Beach (3:15pm)", note:"Icebergs on jet-black sand. 45 min minimum — extraordinary in any light."},
+      {text:"Drive to Höfn (4:15pm)", note:"~80 km, about 1 hour. Vatnajökull filling the horizon the entire way."},
+      {text:"Dinner at Pakkhús, Höfn ⭐ (6:30pm)", note:"Iceland's best langoustine. Book the tasting menu. Glacier views from the table."},
+    ],
+    hotel:"Hótel Höfn — Höfn ⭐", hotelBooked:true,
+    hotelWhy:"5 minutes from Höfn along Route 1. Panoramic Vatnajökull views, modern rooms, good restaurant. Easy drive to Pakkhús for dinner. ~$500 CAD/night. Book at islandshotel.is",
+    costs:[
+      {item:"Hótel Höfn ✓ BOOKED", usd:353},
+      {item:"Jökulsárlón zodiac x2", usd:160},
+                ],
+    drive:"~200 km · ~3 hrs driving",
+    note:null,
+    info:"💡 Höfn langoustine is genuinely some of the best seafood in Europe. Don't skip the tasting menu.",
+    ferry:null
+  },
+  {
+    num:5, date:"Thu Jun 11", color:"#D85A30",
+    name:"East Fjords + Egilsstaðir",
+    sub:"Stuðlagil Canyon · East Fjords scenic drive · Egilsstaðir",
+    birthday:false, westfjords:false,
+    tags:["Landscapes","Hiking"],
+    activities:[
+      {text:"Leave Fosshotel Vatnajökull — 10:00am", note:"Fill up petrol before leaving. Sparse heading north into the East Fjords."},
+      {text:"Stuðlagil Canyon detour ⭐ (11:15am)", note:"~45 min detour north off the Ring Road. Basalt columns with a vivid blue-green river. One of Iceland's most dramatic and least-visited spots. 2 hrs total. Back on Ring Road by 1:15pm."},
+      {text:"East Fjords scenic drive (1:15pm)", note:"Iceland's emptiest and most underrated road. No agenda — stop whenever something catches your eye. Fjord after fjord, tiny villages, zero tour buses."},
+      {text:"Djúpivogur — Eggs of the World harbour sculptures (2:30pm)", note:"Quirky art installation on the waterfront. Good legs-stretch, 30 min."},
+      {text:"Continue north to Egilsstaðir (3:15pm)", note:"~1.5 hrs. Drive along Lagarfljót lake — keep an eye out for the legendary lake worm."},
+      {text:"Arrive Egilsstaðir (5:00pm)", note:"Check in. Both hotels have hot tubs with lake views — get in immediately."},
+      {text:"Dinner at hotel restaurant (7:30pm)", note:"Lake Hotel has a top-rated restaurant with lake views. Hotel 1001 Nott has the best chef of the two — reindeer, lamb, arctic char, exceptional wine list."},
+    ],
+    hotel:"Hotel 1001 Nott ⭐⭐ — BOOKED ✓",
+    hotelWhy:"✅ Hotel 1001 Nott (~$520 CAD) — BOOKED via Expedia. Family-run, exceptional chef, outstanding wine list, cognac lounge with panoramic lake views.",
+    costs:[
+      {item:"Hotel 1001 Nott ✓ BOOKED", usd:380},
+                ],
+    drive:"~200 km · ~3 hrs driving",
+    note:null,
+    info:"💡 Intentionally slow day. The East Fjords are Iceland's most underrated region — savour it. Leave at 10am and you're in the hot tub by 5pm.",
+    ferry:null
+  },
+  {
+    num:6, date:"Fri Jun 12", color:"#9F77DD",
+    name:"Into North Iceland — Mývatn",
+    sub:"Dettifoss · Selfoss · Námaskarð · Krafla · Hverfjall · Mývatn Nature Baths",
+    birthday:false, westfjords:false,
+    tags:["Waterfalls","Volcanoes","Landscapes"],
+    activities:[
+      {text:"Leave Egilsstaðir — 9:00am", note:"~2 hrs to Dettifoss via Route 862. Fill up petrol in Egilsstaðir before leaving."},
+      {text:"Dettifoss — Europe's most powerful waterfall (11:00am)", note:"West bank for the classic view. The spray, the roar, the scale — nothing prepares you for it. 45 min."},
+      {text:"Selfoss waterfall (11:45am)", note:"30 min hike south from Dettifoss. Wider than Dettifoss, far fewer people, completely different character. Most visitors miss it entirely — don't. 45 min total."},
+      {text:"Námaskarð — Hverir geothermal field (1:00pm)", note:"Boiling mud pots and sulphur vents at the foot of Námafjall mountain. Smells like hell, looks like Mars. 45 min."},
+      {text:"Krafla volcanic caldera + Víti crater (2:00pm)", note:"Active volcanic zone with a vivid blue-green crater lake, still steaming. 20 min detour off Ring Road. 1 hr total."},
+      {text:"Hverfjall crater hike ⭐ (3:15pm)", note:"Massive volcanic crater 1km wide, 140m deep. 45 min hike around the rim. Panoramic views over the entire Mývatn lake region. Worth every step."},
+      {text:"Check in (4:30pm)", note:"Drop bags, freshen up."},
+      {text:"Mývatn Nature Baths ⭐ (5:30pm)", note:"The finest geothermal bathing in Iceland — better than the Blue Lagoon in almost every way. Silica-rich geothermal water set right on the lake. Far fewer crowds, far better views. ~$75 CAD/person. Book ahead at myvatnnaturebaths.is. 1.5 hrs."},
+      {text:"Dinner at Vogafjós Farm Restaurant ⭐ (8:00pm)", note:"Extraordinary farm-to-table restaurant on the lake shore — you can watch the cows being milked through the glass wall while you eat. Reindeer, arctic char, homemade skyr. One of the most unique dining experiences in Iceland. Book ahead at vogafjos.net."},
+    ],
+    hotel:"Berjaya Mývatn ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Berjaya Mývatn (~$654 CAD) — BOOKED via Expedia. Right on Lake Mývatn, Mylla Restaurant on site (local reindeer, arctic char, lamb), hot tubs.",
+    costs:[
+      {item:"Berjaya Mývatn ✓ BOOKED", usd:477},
+            {item:"Mývatn Nature Baths x2", usd:110},
+          ],
+    drive:"~230 km · ~3.5 hrs driving",
+    note:"⚠️ F-roads near Dettifoss (Route 862) require 4x4 — your rental earns its keep here.",
+    info:"💡 Leave at 9am, check in by 5pm. One of the most manageable driving days of the trip with some of the most dramatic scenery.",
+    ferry:null
+  },
+  {
+    num:7, date:"Sat Jun 13", color:"#9F77DD",
+    name:"Drive to Westfjords — Goðafoss + Akureyri",
+    sub:"Goðafoss · Akureyri lunch · Fosshotel Westfjords",
+    birthday:false, westfjords:true,
+    tags:["Waterfalls","Westfjords","Hot Springs"],
+    activities:[
+      {text:"Leave Mývatn — 7:30am", note:"Early start — this is the big drive. Fill petrol at Mývatn before leaving."},
+      {text:"Goðafoss — Waterfall of the Gods (8:15am)", note:"Right on the Ring Road, 45 min from Mývatn. Horseshoe falls — the lawspeaker threw the Norse god idols into it when Iceland converted to Christianity in 1000 AD. 30 min stop."},
+      {text:"Kolugljúfur Canyon (9:15am)", note:"Short detour off Route 1 before Akureyri. Hidden gorge with a waterfall — genuinely impressive and almost no tourists. 30 min. Worth every minute."},
+      {text:"Akureyri — coffee + Brynja (10:15am)", note:"Too early for a sit-down lunch — treat this as a quick stop. Grab a coffee and pastry at Lemon Bakery, then Brynja ice cream (been going since 1939 — do not skip it). 30 min total and back on the road."},
+      {text:"Drive west via Route 68 → Route 60 → Route 61 (10:45am)", note:"Long but spectacular drive through remote northern Iceland. Strandir coast, fjord crossings, total emptiness. Put on a good playlist."},
+      {text:"Arrive Patreksfjörður (6:00pm)", note:"Check in at Fosshotel Westfjords. Ask for a fjord-view room."},
+      {text:"Hellislaug hot spring (6:30pm)", note:"Natural geothermal pool carved into the rock on the beach, 5 min from the hotel. Free. Non-negotiable after 7.5 hrs in the car."},
+      {text:"Dinner at Restaurant Skel (8:00pm)", note:"On site at the hotel. Local produce, good wine list. Early night — tomorrow is Látrabjarg."},
+    ],
+    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Fosshotel Westfjords (~$542 CAD) — BOOKED via Expedia. Modern 40-room hotel, Restaurant Skel on site. Gateway to Látrabjarg, Dynjandi and Rauðasandur.",
+    costs:[
+      {item:"Fosshotel Westfjords ✓ BOOKED", usd:396},
+                      ],
+    drive:"~570 km · ~7.5 hrs driving",
+    note:"⚠️ Longest drive of the trip. Leave Mývatn by 7:30am — no exceptions.",
+    info:"💡 Only ~10% of Iceland visitors ever reach the Westfjords. You're about to see what most people miss.",
+    ferry:null
+  },
+  {
+    num:8, date:"Sun Jun 14", color:"#7C3AED",
+    name:"Westfjords — Rauðasandur + Látrabjarg",
+    sub:"Rauðasandur red beach · Látrabjarg puffin cliffs · Patreksfjörður",
+    birthday:false, westfjords:true,
+    tags:["Puffins","Landscapes","Westfjords"],
+    activities:[
+      {text:"Leave Fosshotel — 9:00am", note:"Relaxed start after yesterday's marathon. Fill petrol in Patreksfjörður."},
+      {text:"Garðar BA 64 shipwreck (9:15am)", note:"Right on Route 612 on the way out — zero detour. Iceland's oldest steel ship, a former whaling vessel beached on the shoreline since 1981. Maiden voyage was 1912 — same year as the Titanic. 10 min photo stop."},
+      {text:"Rauðasandur — red sand beach (9:45am)", note:"Route 614 turn-off on the way to Látrabjarg. Pink and red sand from crushed scallop shells, 12 km of beach, often seals in the water. 4x4 required for the steep gravel descent. There's a small café on the beach — Franska Kaffihúsið — with Icelandic waffles and coffee. Budget 1.5 hrs total — leave by 11:15am."},
+      {text:"Látrabjarg cliffs ⭐ (12:00pm)", note:"441m sea cliffs — the westernmost point of Europe. Thousands of puffins in June, nesting right at your feet. Walk as far along the cliffs as you can — the further you go, the fewer people. Budget 2.5 hrs."},
+      {text:"Return to Patreksfjörður (3:30pm)", note:"Head to the town swimming pool — gorgeous outdoor pool with hot tubs overlooking the fjord, right in town. Far better than sitting in the hotel. ~$10 CAD entry."},
+      {text:"Dinner at Restaurant Skel (7:00pm)", note:"Second night on site. Early night — tomorrow starts at 7am."},
+    ],
+    hotel:"Fosshotel Westfjords — Patreksfjörður ⭐ — BOOKED ✓",
+    hotelWhy:"✅ Fosshotel Westfjords (~$542 CAD) — BOOKED via Expedia. Second night. Rauðasandur and Látrabjarg both within an hour.",
+    costs:[
+      {item:"Fosshotel Westfjords ✓ BOOKED", usd:396},
+      {item:"Patreksfjörður pool x2", usd:15},
+          ],
+    drive:"~120 km · ~3 hrs driving (Rauðasandur + Látrabjarg loop)",
+    note:null,
+    info:"💡 Rauðasandur first, Látrabjarg second — this is the correct order. Rauðasandur is on the way out, Látrabjarg is the finale.",
+    ferry:null
+  },
+  {
+    num:9, date:"Mon Jun 15", color:"#7C3AED",
+    name:"Dynjandi + Baldur Ferry → Reykjavík",
+    sub:"Dynjandi waterfall · 2pm Baldur ferry · Stykkishólmur · Reykjavík",
+    birthday:false, westfjords:false,
+    tags:["Waterfalls","Westfjords"],
+    activities:[
+      {text:"Leave Patreksfjörður — 8:00am", note:"Fill petrol before leaving. Dynjandi is ~1.5 hrs north on gravel roads."},
+      {text:"Dynjandi waterfall ⭐ — the Jewel of the Westfjords (9:30am)", note:"100m seven-tiered bridal veil waterfall. 15-min hike up past six smaller falls. One of the most beautiful waterfalls in Iceland — and almost no crowds. Budget 1.5 hrs. Leave by 11:00am."},
+      {text:"Drive to Brjánslækur ferry terminal (11:00am)", note:"~30 min from Dynjandi. Arrive ~11:30am — 2.5hr buffer before the 2pm ferry. Comfortable. Grab lunch at the terminal or bring food from Patreksfjörður."},
+      {text:"Baldur ferry 2:00pm ⭐ — Brjánslækur → Stykkishólmur", note:"BOOKED — Ticket FER-T130447715. Departs 2pm sharp. 2.5hr scenic crossing of Breiðafjörður bay via Flatey island. Restaurant on board. Arrive Stykkishólmur ~4:30pm."},
+      {text:"Drive to Reykjavík (4:30pm)", note:"~2 hrs from Stykkishólmur. Arrive Reykjavík ~6:30pm."},
+      {text:"Final dinner — Grillmarkaðurinn ⭐ (8:00pm)", note:"Wood-fired Icelandic lamb, langoustine, and beef. The tasting menu takes you around Iceland one bite at a time. Similar quality to Dill, far easier to book, and roughly half the price. Book ahead at grillmarkadurinn.is."},
+      {text:"Return car to Hertz downtown tonight", note:"Drop off before dinner — removes all morning stress for tomorrow's flight."},
+    ],
+    hotel:"Hotel Borg — Reykjavík (final night)",
+    hotelWhy:"Back where it started. Central, elegant, walkable to Dill. Last night treat. Book at hotelborg.is",
+    costs:[
+      {item:"Apotek Hotel ✓ BOOKED", usd:307},
+      {item:"Baldur ferry — already paid", usd:0},
+      {item:"Dynjandi parking", usd:6},
+                ],
+    drive:"~230 km driving + 2.5 hrs ferry",
+    note:"⚠️ Ferry departs 2pm sharp — non-negotiable. Leave Dynjandi by 10:30am.",
+    info:"⛴️ Ticket booked: FER-T130447715 · John D souza + Neha Aggarwal · Mon Jun 15 · 2:00pm · Brjánslækur",
+    ferry:null
+  },
+  {
+    num:10, date:"Tue Jun 16", color:"#3B8BD4",
+    name:"Departure — 10:30am flight to Vancouver",
+    sub:"Relaxed morning · cab to Keflavík · fly home",
+    birthday:false, westfjords:false,
+    tags:[],
+    activities:[
+      {text:"Relaxed morning in Reykjavík", note:"Car already returned. Grab breakfast near the hotel, browse Laugavegur, buy the lopapeysa sweater you've been eyeing all trip."},
+      {text:"Cab or Flybus from Reykjavík by 8:00am", note:"Airport is 45 min away. Allow 2.5 hrs before a 10:30am departure. Flybus picks up from BSÍ bus terminal — book ahead at re.is."},
+      {text:"Flight FI695 departs 10:30am ✈️", note:"KEF → YVR · 7h 25m · Terminal M. Arrives Vancouver 10:55am same day. Home."},
+    ],
+    hotel:null, hotelWhy:null,
+    costs:[
+      {item:"Flybus to airport x2", usd:88},
+          ],
+    drive:"~50 km to Keflavík — cab or Flybus",
+    note:"⚠️ No time for Blue Lagoon on departure day. Sky Lagoon on Day 1 was the right call.",
+    info:null,
+    ferry:null
+  }
+];
+
+
+const container = document.getElementById('days');
+
+days.forEach((d, i) => {
+  const card = document.createElement('div');
+  card.className = 'day-card' + (d.birthday ? ' birthday' : '');
+
+  const totalUSD = d.costs.reduce((s, c) => s + c.usd, 0);
+  const totalCAD = Math.round(totalUSD * CAD / 10) * 10;
+  const totalStr = "~$" + totalCAD.toLocaleString() + " CAD";
+
+  const tagsHtml = d.tags.map(t => {
+    let cls = 'tag-blue';
+    if (['Waterfalls','Glaciers','Snorkelling'].includes(t)) cls = 'tag-blue';
+    if (['Hiking','Landscapes','Wildlife','Puffins'].includes(t)) cls = 'tag-green';
+    if (['Hot springs','Volcanoes','Food','City'].includes(t)) cls = 'tag-amber';
+    if (t === 'Westfjords') cls = 'tag-purple';
+    return `<span class="tag ${cls}">${t}</span>`;
+  }).join('');
+
+  const actsHtml = d.activities.map(a => `
+    <div class="activity">
+      <div class="act-dot"></div>
+      <div>
+        <div class="act-text">${a.text}</div>
+        <div class="act-note">${a.note}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const costsHtml = d.costs.map(c => {
+    const cad = Math.round(c.usd * CAD / 5) * 5;
+    const prefix = c.item.includes("✓ BOOKED") || c.item.includes("Flybus") || c.item.includes("already paid") ? "" : "~"; return `<tr><td>${c.item}</td><td style="text-align:right;font-weight:600">${prefix}$${cad.toLocaleString()}</td></tr>`;
+  }).join('');
+
+  const hotelHtml = d.hotel ? `
+    <div class="section-label">${d.hotelBooked ? '🏨 Hotel — Booked ✓' : 'Where to stay'}</div>
+    <div class="hotel-box">
+      <div class="hotel-name">${d.hotel}</div>
+      <div class="hotel-why">${d.hotelWhy}</div>
+    </div>
+  ` : '';
+
+  const noteHtml = d.note ? `<div class="warn-box">${d.note}</div>` : '';
+  const infoHtml = d.info ? `<div class="info-box">${d.info}</div>` : '';
+  const ferryHtml = d.ferry ? `<div class="ferry-box">${d.ferry}</div>` : '';
+
+  const bdayPill = d.birthday ? `<span class="bday-pill">🎂 Birthday</span>` : '';
+  const westPill = d.westfjords ? `<span class="west-pill">Westfjords</span>` : '';
+
+  card.innerHTML = `
+    <div class="day-header" onclick="toggle(${i})">
+      <div class="day-badge" style="background:${d.color}22;color:${d.color}">D${d.num}</div>
+      <div class="day-title">
+        <div class="day-date">${d.date}</div>
+        <div class="day-name">${d.name} ${bdayPill}${westPill}</div>
+        <div class="day-sub">${d.sub}</div>
+      </div>
+      <div class="cost-badge">${totalStr}</div>
+      <div class="chevron" id="chev-${i}">▶</div>
+    </div>
+    <div class="day-body" id="body-${i}">
+      <div style="margin-top:10px">${tagsHtml}</div>
+      <div class="section-label">Activities</div>
+      ${actsHtml}
+      ${hotelHtml}
+      <div class="section-label">Estimated costs (2 people, CAD)</div>
+      <table class="cost-table">
+        <thead><tr><th>Item</th><th style="text-align:right">CAD</th></tr></thead>
+        <tbody>
+          ${costsHtml}
+          <tr class="total-row"><td>Day total</td><td style="text-align:right">${totalStr}</td></tr>
+        </tbody>
+      </table>
+      ${noteHtml}
+      ${infoHtml}
+      ${ferryHtml}
+      <div class="drive-bar">🚗 ${d.drive}</div>
+    </div>
+  `;
+  container.appendChild(card);
+
+  // Build day pill nav button
+  const nav = document.getElementById('day-nav');
+  const pill = document.createElement('button');
+  pill.className = 'day-pill' + (i === 0 ? ' day-pill-active' : '');
+  pill.textContent = 'Day ' + d.num;
+  pill.style.cssText = 'padding:5px 12px;font-size:11px;font-weight:700;border-radius:20px;border:1px solid;cursor:pointer;transition:all 0.15s;';
+  pill.setAttribute('data-day', i);
+  pill.style.background = i === 0 ? d.color : 'transparent';
+  pill.style.color = i === 0 ? '#fff' : d.color;
+  pill.style.borderColor = d.color;
+  pill.onclick = () => showDay(i);
+  nav.appendChild(pill);
+});
+
+function showDay(idx) {
+  // Hide all cards
+  document.querySelectorAll('.day-card').forEach((c, i) => {
+    c.style.display = i === idx ? 'block' : 'none';
+  });
+  // Open the body of the active card
+  const body = document.getElementById('body-' + idx);
+  const chev = document.getElementById('chev-' + idx);
+  if (body && !body.classList.contains('open')) {
+    body.classList.add('open');
+    if (chev) chev.classList.add('open');
+  }
+  // Update pill styles
+  document.querySelectorAll('.day-pill').forEach((p, i) => {
+    const color = days[i].color;
+    if (i === idx) {
+      p.style.background = color;
+      p.style.color = '#fff';
+      p.style.borderColor = color;
+    } else {
+      p.style.background = 'transparent';
+      p.style.color = color;
+      p.style.borderColor = color;
+    }
+  });
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  var target = document.getElementById('tab-' + name);
+  if (target) target.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function toggle(i) {
+  const body = document.getElementById(`body-${i}`);
+  const chev = document.getElementById(`chev-${i}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+// Init: show day 1 only
+showDay(0);
+
+function fromISK(val) {
+  const cad = val === '' ? '' : Math.round(parseFloat(val) / 1000 * 12 * 100) / 100;
+  document.getElementById('cad-input').value = val === '' ? '' : cad;
+}
+function fromCAD(val) {
+  const isk = val === '' ? '' : Math.round(parseFloat(val) / 12 * 1000);
+  document.getElementById('isk-input').value = val === '' ? '' : isk;
+}
+</script>
+</body>
+</html>
