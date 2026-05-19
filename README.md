@@ -1,2 +1,0 @@
-# iceland
-Iceland trip
